@@ -15,6 +15,7 @@ namespace DIS
     public partial class Form1 : Form
     {
         private List<Layer> layers = new List<Layer>();
+        MyCanvas canvas = new MyCanvas();
         public Form1()
         {
             InitializeComponent();
@@ -26,6 +27,8 @@ namespace DIS
             //задаем рабочие значения для класса managerLayer
             ManagerLayer.tableLayoutPanel = this.tableLayoutPanel1;
             ManagerLayer.layers = this.layers;
+            ManagerLayer.pictureBox = this.pictureBox1;
+            ManagerLayer.canvas = this.canvas;
 
             //настройка объекта для выполнения операции в отдельном потоке
             BackgroundWork.form = this;
@@ -41,10 +44,34 @@ namespace DIS
 
             button2.Enabled = true;
             button3.Enabled = true;
+
+            //настройка comboBox с функциями
+            comboBox1.Items.AddRange(new string[]
+            {
+                "Линейная зависимость",
+                "Квадратичный сплайн",
+                "Кубический сплайн",
+                "Полином Лагранжа",
+                "Полином Ньютона",
+                "Кривая Безье"
+            });
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.SelectedIndex = 0;
+
+            //настройка рисования (поистроения графика по точкам)
+            canvas.Name = "canvas1";
+            canvas.pictureBox = this.pictureBox1;
+            canvas.comboBox = this.comboBox1;
+            canvas.chart = this.chart1;
+            canvas.panel = this.panel1;
+            this.panel1.Controls.Add(canvas);
+            canvas.Dock = DockStyle.Fill;
         }
         //сохранить
         private void button1_Click(object sender, EventArgs e)
         {
+            if (pictureBox1.Image == null) return;
+
             //создание диалогового окна для сохранения изображения
             SaveFileDialog savedialog = new SaveFileDialog();
             savedialog.Title = "Сохранить картинку";
@@ -79,29 +106,9 @@ namespace DIS
             }
             try
             {
-                Layer layer = new Layer(Image.FromFile(openFileDialog.FileName), tableLayoutPanel1.Width);
-                //обработка прозрачности
-                layer.trackBar.ValueChanged += new EventHandler(ManagerLayer.TrackBar_ValueChange);
-                //обработка цветовых каналов
-                layer.Check_R.CheckedChanged += new EventHandler(ManagerLayer.CheckBox_Сhange);
-                layer.Check_G.CheckedChanged += new EventHandler(ManagerLayer.CheckBox_Сhange);
-                layer.Check_B.CheckedChanged += new EventHandler(ManagerLayer.CheckBox_Сhange);
-                //обработка удаления контейнера с изображением
-                layer.B_delete.Click += new EventHandler(ManagerLayer.Button_ContainerClose);
-                //обработка изменения положения контейнера
-                layer.B_up.Click += new EventHandler(ManagerLayer.Button_ContainerUp);
-                layer.B_down.Click += new EventHandler(ManagerLayer.Button_ContainerDown);
-                //добавляем контейнер в список
-                layers.Add(layer);
-
-                if (layers.Count == 1) layers[0].comboBox.Enabled = false;
-
-                //добавляем контейнера в таблицу
-                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, Layer.HeigthLayerRow));
-                int row = tableLayoutPanel1.RowCount;
-                tableLayoutPanel1.RowCount = row + 1;
-                tableLayoutPanel1.Controls.Add(layer.pictureBox, 0, row);
-                tableLayoutPanel1.Controls.Add(layer.FlowLayoutPanel, 1, row);
+                //добавляем новый контейнер
+                AddLayer(Image.FromFile(openFileDialog.FileName), tableLayoutPanel1.Width);
+                
             }
             catch
             {
@@ -133,12 +140,77 @@ namespace DIS
         //сбросить график
         private void button4_Click(object sender, EventArgs e)
         {
-
+            canvas.Clear();
         }
-        //задать кривую
+        
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
+        //добавить/применить
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null) return;
+            try
+            {
+                Layer Worklayer = layers.FirstOrDefault(x => x.Work == true);
+                if(Worklayer != null)
+                {
+                    //если мы работаем с изображением, которое было добавлено
+                    Worklayer.image.Dispose();
+                    Worklayer.image = (Image)pictureBox1.Image.Clone();
+                    Worklayer.pictureBox.Image.Dispose();
+                    Worklayer.pictureBox.Image = (Image)pictureBox1.Image.Clone();
+                    Worklayer.Work = false;
+                }
+                else
+                {
+                    //добавляем новый контейнер
+                    AddLayer((Image)pictureBox1.Image.Clone(), tableLayoutPanel1.Width);
+                }
+            }
+            catch
+            {
+                ManagerError.ErrorOK("Произошла ошибка при добавлении картинки!");
+            }
+        }
+        //функция для добавления контейнера с изображением, а также обновления таблицы с контейнерами
+        private void AddLayer(Image image, int width)
+        {
+            Layer layer = new Layer(image, width);
+            //обработка прозрачности
+            layer.trackBar.ValueChanged += new EventHandler(ManagerLayer.TrackBar_ValueChange);
+            //обработка цветовых каналов
+            layer.Check_R.CheckedChanged += new EventHandler(ManagerLayer.CheckBox_Сhange);
+            layer.Check_G.CheckedChanged += new EventHandler(ManagerLayer.CheckBox_Сhange);
+            layer.Check_B.CheckedChanged += new EventHandler(ManagerLayer.CheckBox_Сhange);
+            //обработка удаления контейнера с изображением
+            layer.B_delete.Click += new EventHandler(ManagerLayer.Button_ContainerClose);
+            //обработка изменения положения контейнера
+            layer.B_up.Click += new EventHandler(ManagerLayer.Button_ContainerUp);
+            layer.B_down.Click += new EventHandler(ManagerLayer.Button_ContainerDown);
+            //отправляем изображение на редактирование вне рамок rgb и сбора
+            layer.B_showImage.Click += new EventHandler(ManagerLayer.Button_ShowImage);
+            //добавляем контейнер в список
+            layers.Add(layer);
 
+            if (layers.Count == 1) layers[0].comboBox.Enabled = false;
+
+            //добавляем контейнера в таблицу
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, Layer.HeigthLayerRow));
+            int row = tableLayoutPanel1.RowCount;
+            tableLayoutPanel1.RowCount = row + 1;
+            tableLayoutPanel1.Controls.Add(layer.pictureBox, 0, row);
+            tableLayoutPanel1.Controls.Add(layer.FlowLayoutPanel, 1, row);
+        }
+        //заменить главную картинку измененной с помощью градационных преобразований
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (canvas.Image == null) return;
+            canvas.Image.Dispose();
+            canvas.Image = (Image)pictureBox1.Image.Clone();
+
+            canvas.Clear();
         }
     }
 }

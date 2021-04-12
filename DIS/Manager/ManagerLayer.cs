@@ -17,7 +17,9 @@ namespace DIS.Manager
         public static TableLayoutPanel tableLayoutPanel;
         //список контейнеров с изображениями
         public static List<Layer> layers;
-
+        //контейнер с главным имзображением
+        public static PictureBox pictureBox;
+        public static MyCanvas canvas;
         //перерисовать таблицу с контейнерами (изображениями)
         public static void UpdateTableLayoutPanel()
         {
@@ -148,16 +150,31 @@ namespace DIS.Manager
                 //обновляем таблицу с изображениями
                 UpdateTableLayoutPanel();
             }
-        } 
+        }
         //показать изображение (отображает картинку как главную)
-        public static void Button_ShowImage(object sender, EventHandler args)
+        public static void Button_ShowImage(object sender, EventArgs args)
         {
             //получаем нажатую кнопку
             var button = (Button)sender;
             //находим нужный контейнер с картинной
-            var container = layers.First(x => x.B_down == button);
+            var container = layers.First(x => x.B_showImage == button);
 
-            ManagerError.ErrorOK("В процессе!");
+            container.Work = true;
+            if (pictureBox.Image != null)
+            {
+                pictureBox.Image.Dispose();
+            }
+            if(canvas.Image != null)
+            {
+                canvas.Image.Dispose();
+            }
+            
+            //устанавливаем картинку
+            LayerValue layerValue = new LayerValue(container);
+            pictureBox.Image = WorkImage.SetImgChannelValue(layerValue.image, layerValue.Transparency, layerValue.R, layerValue.G, layerValue.B);
+            canvas.Image = (Image)pictureBox.Image.Clone();
+
+            canvas.Clear();
         }
     }
 }

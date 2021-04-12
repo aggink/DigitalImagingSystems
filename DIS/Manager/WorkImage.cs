@@ -1,10 +1,12 @@
 ﻿using DIS.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DIS.Manager
@@ -133,7 +135,8 @@ namespace DIS.Manager
                         argbValues[i + 2] = (byte)Clamp(argbValues[i + 2] * nR * (1 - nW) + argbValues[i + 2] * nR * WorkArgb[i + 2] * nW / 255.0, 0, 255);
                         argbValues[i + 1] = (byte)Clamp(argbValues[i + 1] * nR * (1 - nW) + argbValues[i + 1] * nR * WorkArgb[i + 1] * nW / 255.0, 0, 255);
                         argbValues[i] = (byte)Clamp(argbValues[i] * nR * (1 - nW) + argbValues[i] * WorkArgb[i] * nR * nW / 255.0, 0, 255);
-            break;
+                        break;
+
                     default:
                         break;
                 }
@@ -169,6 +172,39 @@ namespace DIS.Manager
             graphics.Dispose();
             imageAttributes.Dispose();
             return bmp;
+        }
+        //градационные преобразования
+        public static (Image, DataTable) GradationTransform(Image image, List<int> values, string col1, string col2)
+        {
+            //создаем таблицу для построения гистограммы
+            DataTable table = new DataTable("BarGraph");
+            table.Columns.Add(col1, typeof(int));
+            table.Columns.Add(col2, typeof(int));
+
+            Bitmap bmp = new Bitmap(image);
+            Rectangle rectangle = new Rectangle(0, 0, bmp.Width, bmp.Height);
+            BitmapData bitmapData = bmp.LockBits(rectangle, ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            IntPtr intPtr = bitmapData.Scan0;
+            int bytes = Math.Abs(bitmapData.Stride) * bmp.Height;
+            byte[] argb = new byte[bytes];
+            System.Runtime.InteropServices.Marshal.Copy(intPtr, argb, 0, bytes);
+
+            Parallel.For(0, argb.Length, (Action<int>)(i => argb[i] = (byte)Clamp(values[argb[i]], 0, 255)));
+            int[] n = new int[256];
+            Parallel.For(0, argb.Length / 3, (Action<int>)(i => Interlocked.Increment(ref n[(int)((double)((int)argb[i * 3] + (int)argb[i * 3 + 1] + (int)argb[i * 3 + 2]) / 3.0)])));
+
+            for (int i = 0; i < 256; i++)
+            {
+                DataRow row = table.NewRow();
+                row[0] = i;
+                row[1] = n[i];
+                table.Rows.Add(row);
+            }
+
+            System.Runtime.InteropServices.Marshal.Copy(argb, 0, intPtr, bytes);
+            bmp.UnlockBits(bitmapData);
+
+            return (bmp, table);
         }
     }
 }

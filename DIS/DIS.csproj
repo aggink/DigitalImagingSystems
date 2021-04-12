@@ -53,15 +53,26 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interpolation\BezierCurve.cs" />
+    <Compile Include="Interpolation\LagrangePolynomial.cs" />
+    <Compile Include="Interpolation\LinearInterpolation.cs" />
+    <Compile Include="Interpolation\NewtonPolynomial.cs" />
+    <Compile Include="Interpolation\QuadSpline.cs" />
+    <Compile Include="Interpolation\СubicSpline.cs" />
     <Compile Include="Manager\BackgroundWork.cs" />
     <Compile Include="Manager\BarGraph.cs" />
     <Compile Include="Manager\ManagerError.cs" />
     <Compile Include="Manager\ManagerLayer.cs" />
+    <Compile Include="Manager\MyCanvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Manager\WorkImage.cs" />
     <Compile Include="Model\Layer.cs" />
     <Compile Include="Model\LayerValue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolveSystemEquations\GaussianElimination.cs" />
+    <Compile Include="SolveSystemEquations\SweepMethod.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,5 +98,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

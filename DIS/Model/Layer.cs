@@ -42,6 +42,7 @@ namespace DIS.Model
         public static readonly int HeigthLayer = 155;
         private static readonly Padding margin = new Padding(3, 3, 3, 3);
         private static readonly Padding padding = new Padding(2, 0, 0, 3);
+        public bool Work { get; set; } = false;
         public Layer(Layer layer)
         {
             this.image = layer.image;
@@ -206,6 +207,7 @@ namespace DIS.Model
             this.B_delete.Dispose();
             this.B_up.Dispose();
             this.B_down.Dispose();
+            this.B_showImage.Dispose();
             this.trackBar.Dispose();
             this.comboBox.Dispose();
             this.Check_R.Dispose();

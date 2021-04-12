@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,12 @@ namespace DIS.Manager
                 //выводим результат
                 if (form.pictureBox1.Image != null) form.pictureBox1.Image.Dispose();
                 form.pictureBox1.Image = result.image;
+
+                if((form.panel1.Controls[0] as MyCanvas).Image != null)
+                {
+                    (form.panel1.Controls[0] as MyCanvas).Image.Dispose();
+                }
+                (form.panel1.Controls[0] as MyCanvas).Image = (Image)result.image.Clone();
             }
 
         }
