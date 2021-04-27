@@ -35,6 +35,9 @@ namespace DIS.Manager
 
         //<!--- мое --->
 
+        //расчитать в привычном разрешении картинки
+        private bool transform_сompleted = false;
+
         //создаем список, где будут храниться наши точки и задем двекрайние точки
         public List<Point> points = new List<Point>()
         {
@@ -190,7 +193,13 @@ namespace DIS.Manager
             //обновляем контейнер с изображением, а также гистограмму
             if (painting_mode)
             {
-                UpdateImgAndBarGraph(factorValues);
+                UpdateImgAndBarGraph(factorValues, 640, 480);
+            }
+            
+            if(transform_сompleted)
+            { 
+                UpdateImgAndBarGraph(factorValues, Image.Width, Image.Height);
+                transform_сompleted = false;
             }
         }
 
@@ -198,7 +207,10 @@ namespace DIS.Manager
         {
             //при отпускании ЛКМ отключаем режим рисования
             if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
+            {
                 painting_mode = false;
+                transform_сompleted = true;
+            }
         }
 
         private void MyCanvas_MouseDown(object sender, MouseEventArgs e)
@@ -296,12 +308,9 @@ namespace DIS.Manager
 
             //обновляем график
             List<int> factorValues = InterpolationAndDraw();
-            //delegate_change changeEvent = this.change_event;
-            //if (changeEvent == null) return;
-            //changeEvent(factorValues);
 
             //обновляем контейнер с изображением, а также гистограмму
-            UpdateImgAndBarGraph(factorValues);
+            UpdateImgAndBarGraph(factorValues, Image.Width, Image.Height);
         }
         //преобразование координат блока (255, 255) к размерам контейнера
         private Point TransformCoordTo(Point point)
@@ -401,11 +410,12 @@ namespace DIS.Manager
         }
 
         //изменяем изображение, а также гистограмму
-        public void UpdateImgAndBarGraph(List<int> factorValues)
+        public void UpdateImgAndBarGraph(List<int> factorValues, int wigth, int heigth)
         {
             if (Image == null || pictureBox.Image == null) return;
+            var image = (img: Image, width: wigth, heigth: heigth);
             //изменяем изображение, а также гистограмму
-            (Image img, DataTable table) = WorkImage.GradationTransform(Image, factorValues, chart.Series[0].XValueMember, chart.Series[0].YValueMembers);
+            (Image img, DataTable table) = WorkImage.GradationTransform(image, factorValues, chart.Series[0].XValueMember, chart.Series[0].YValueMembers);
 
             pictureBox.Image.Dispose();
             pictureBox.Image = img;

@@ -20,6 +20,7 @@ namespace DIS.Manager
         //контейнер с главным имзображением
         public static PictureBox pictureBox;
         public static MyCanvas canvas;
+        public static Button ButtonUpdateImg;
         //перерисовать таблицу с контейнерами (изображениями)
         public static void UpdateTableLayoutPanel()
         {
@@ -159,20 +160,39 @@ namespace DIS.Manager
             //находим нужный контейнер с картинной
             var container = layers.First(x => x.B_showImage == button);
 
-            container.Work = true;
-            if (pictureBox.Image != null)
+            if (!container.Work)
             {
-                pictureBox.Image.Dispose();
+                foreach (var x in layers)
+                {
+                    x.Work = false;
+                    x.B_showImage.BackColor = Color.LightGreen;
+                }
+
+                container.Work = true;
+                container.B_showImage.BackColor = Color.LimeGreen;
+
+                if (pictureBox.Image != null)
+                {
+                    pictureBox.Image.Dispose();
+                }
+                if (canvas.Image != null)
+                {
+                    canvas.Image.Dispose();
+                }
+
+                ButtonUpdateImg.BackColor = Color.LimeGreen;
+
+                //устанавливаем картинку
+                LayerValue layerValue = new LayerValue(container);
+                pictureBox.Image = WorkImage.SetImgChannelValue(layerValue.image, layerValue.Transparency, layerValue.R, layerValue.G, layerValue.B);
+                canvas.Image = (Image)pictureBox.Image.Clone();
             }
-            if(canvas.Image != null)
+            else
             {
-                canvas.Image.Dispose();
+                container.Work = false;
+                container.B_showImage.BackColor = Color.LightGreen;
+                ButtonUpdateImg.BackColor = Color.LightGreen;
             }
-            
-            //устанавливаем картинку
-            LayerValue layerValue = new LayerValue(container);
-            pictureBox.Image = WorkImage.SetImgChannelValue(layerValue.image, layerValue.Transparency, layerValue.R, layerValue.G, layerValue.B);
-            canvas.Image = (Image)pictureBox.Image.Clone();
 
             canvas.Clear();
         }

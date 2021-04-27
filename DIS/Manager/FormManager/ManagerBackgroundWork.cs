@@ -7,14 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DIS.Manager
 {
     //класс для выполнения запросов в отдельном потоке
-    public static class BackgroundWork
+    public static class ManagerBackgroundWork
     {
         public static List<Layer> layers;
-        public static Form1 form;
+
+        public static ProgressBar progressBar = null;
+        public static Chart chart = null;
+        public static Button Button_Save = null;
+        public static Button Button_Unite = null;
+        public static Button Button_AddChanges = null;
+        public static PictureBox MainImage = null;
+        public static BackgroundWorker backgroundWork = null;
+        public static Panel panel = null;
+
         //обработка при завершении операции, ее остановке или ошибки
         public static void CompletedProcess(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -34,21 +44,22 @@ namespace DIS.Manager
             if (layers.Any())
             {
                 //показатель обработки изображения
-                form.progressBar1.Value = 100;
+                progressBar.Value = 100;
 
                 //запуск для построения гистограммы
-                form.chart1.DataSource = BarGraph.BuildBarGraph(form.pictureBox1.Image);
-                form.chart1.DataBind();
+                chart.DataSource = BarGraph.BuildBarGraph(MainImage.Image);
+                chart.DataBind();
             }
             //открываем доступ к кнопкам
-            form.button2.Enabled = true;
-            form.button3.Enabled = true;
+            Button_Save.Enabled = true;
+            Button_Unite.Enabled = true;
+            Button_AddChanges.Enabled = true;
         }
         //настройка прогресс-бара
         public static void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             //устанавливаем процент выполнения асинхронной операции
-            form.progressBar1.Value = e.ProgressPercentage;
+            progressBar.Value = e.ProgressPercentage;
         }
         //обработка запроса в другом потоке
         public static void Work(object sender, DoWorkEventArgs e)
@@ -69,19 +80,19 @@ namespace DIS.Manager
                 {
                     result.MergeImages(layerValues[i]);
                     //обновление прогресса обработки в другом потоке
-                    form.backgroundWorker1.ReportProgress((int)((float)(layers.Count - 1.0 - i) / (layers.Count - 1.0) * 100.0));
+                    backgroundWork.ReportProgress((int)((float)(layers.Count - 1.0 - i) / (layers.Count - 1.0) * 100.0));
                 }
+
                 //выводим результат
-                if (form.pictureBox1.Image != null) form.pictureBox1.Image.Dispose();
-                form.pictureBox1.Image = result.image;
+                if (MainImage.Image != null) MainImage.Image.Dispose();
+                MainImage.Image = (Image)result.image.Clone();
 
-                if((form.panel1.Controls[0] as MyCanvas).Image != null)
-                {
-                    (form.panel1.Controls[0] as MyCanvas).Image.Dispose();
-                }
-                (form.panel1.Controls[0] as MyCanvas).Image = (Image)result.image.Clone();
+                //заменяем начальное изображение для градационных преобразований
+                if((panel.Controls[0] as MyCanvas).Image != null) (panel.Controls[0] as MyCanvas).Image.Dispose();
+                (panel.Controls[0] as MyCanvas).Image = (Image)result.image.Clone();
+
+                result.image.Dispose();
             }
-
         }
     }
 }

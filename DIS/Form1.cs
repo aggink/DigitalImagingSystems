@@ -29,14 +29,23 @@ namespace DIS
             ManagerLayer.layers = this.layers;
             ManagerLayer.pictureBox = this.pictureBox1;
             ManagerLayer.canvas = this.canvas;
+            ManagerLayer.ButtonUpdateImg = this.button5;
 
             //настройка объекта для выполнения операции в отдельном потоке
-            BackgroundWork.form = this;
-            BackgroundWork.layers = layers;
+            ManagerBackgroundWork.MainImage = pictureBox1;
+            ManagerBackgroundWork.chart = chart1;
+            ManagerBackgroundWork.backgroundWork = backgroundWorker1;
+            ManagerBackgroundWork.Button_AddChanges = button5;
+            ManagerBackgroundWork.Button_Save = button1;
+            ManagerBackgroundWork.Button_Unite = button3;
+            ManagerBackgroundWork.progressBar = progressBar1;
+            ManagerBackgroundWork.panel = panel1;
+            ManagerBackgroundWork.layers = layers;
+
             backgroundWorker1.WorkerReportsProgress = true;
-            backgroundWorker1.DoWork += new DoWorkEventHandler(BackgroundWork.Work);
-            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWork.CompletedProcess);
-            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(BackgroundWork.ProgressChanged);
+            backgroundWorker1.DoWork += new DoWorkEventHandler(ManagerBackgroundWork.Work);
+            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ManagerBackgroundWork.CompletedProcess);
+            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(ManagerBackgroundWork.ProgressChanged);
 
             //настройка гистограммы
             chart1.Series[0].XValueMember = BarGraph.col1;
@@ -66,56 +75,83 @@ namespace DIS
             canvas.panel = this.panel1;
             this.panel1.Controls.Add(canvas);
             canvas.Dock = DockStyle.Fill;
+
+            //настройка бинаризации
+            ManagerBinarization.ProgressBar = progressBar1;
+            ManagerBinarization.ButtonBinar = button7;
+            ManagerBinarization.ButtonResult = button8;
+            ManagerBinarization.MainImage = pictureBox1;
+            ManagerBinarization.ImageBinar = pictureBox2;
+            ManagerBinarization.CB_Gavrilov = CB_Gavrilov;
+            ManagerBinarization.CB_Otsu = CB_Otsu;
+            ManagerBinarization.CB_BradleyRota = CB_BradleyRota;
+            ManagerBinarization.CB_ChristianWolfe = CB_ChristianWolfe;
+            ManagerBinarization.CB_Sauwolas = CB_Sauwolas;
+            ManagerBinarization.CB_Nibleck = CB_Nibleck;
+            ManagerBinarization.NUD_Size = numericUpDown1;
+            ManagerBinarization.NUD_KorA = numericUpDown2;
+            ManagerBinarization.Canvas = canvas;
+
+            CB_BradleyRota.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
+            CB_ChristianWolfe.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
+            CB_Gavrilov.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
+            CB_Nibleck.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
+            CB_Otsu.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
+            CB_Sauwolas.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
+            numericUpDown1.ValueChanged += new EventHandler(ManagerBinarization.NUD_ValueChanged);
+            numericUpDown2.ValueChanged += new EventHandler(ManagerBinarization.NUD_ValueChanged);
         }
+
         //сохранить
         private void button1_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image == null) return;
-
-            //создание диалогового окна для сохранения изображения
-            SaveFileDialog savedialog = new SaveFileDialog();
-            savedialog.Title = "Сохранить картинку";
-            //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
-            savedialog.OverwritePrompt = true;
-            //отображать ли предупреждение, если пользователь указывает несуществующий путь
-            savedialog.CheckPathExists = true;
-            //список форматов файла, отображаемый в поле "Тип файла"
-            savedialog.Filter = "Image Files(*.BMP)|*.BMP|Image Files(*.JPG)|*.JPG|Image Files(*.GIF)|*.GIF|Image Files(*.PNG)|*.PNG|All files (*.*)|*.*";
-            //отображается ли кнопка "Справка" в диалоговом окне
-            savedialog.ShowHelp = true;
-            if (savedialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                try
+                if (pictureBox1.Image == null) return;
+
+                //создание диалогового окна для сохранения изображения
+                SaveFileDialog savedialog = new SaveFileDialog();
+                savedialog.Title = "Сохранить картинку";
+                //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
+                savedialog.OverwritePrompt = true;
+                //отображать ли предупреждение, если пользователь указывает несуществующий путь
+                savedialog.CheckPathExists = true;
+                //список форматов файла, отображаемый в поле "Тип файла"
+                savedialog.Filter = "Image Files(*.BMP)|*.BMP|Image Files(*.JPG)|*.JPG|Image Files(*.GIF)|*.GIF|Image Files(*.PNG)|*.PNG|All files (*.*)|*.*";
+                //отображается ли кнопка "Справка" в диалоговом окне
+                savedialog.ShowHelp = true;
+
+                if (savedialog.ShowDialog() == DialogResult.OK)
                 {
                     pictureBox1.Image.Save(savedialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
                 }
-                catch
-                {
-                    ManagerError.ErrorOK("Произошла ошибка при сохранении изображения!");
-                }
-            }
-        }
-        //добавить изображение
-        private void button2_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if(openFileDialog.ShowDialog() != DialogResult.OK)
-            {
-                ManagerError.ErrorOK("Файл не выбран!");
-                return;
-            }
-            try
-            {
-                //добавляем новый контейнер
-                AddLayer(Image.FromFile(openFileDialog.FileName), tableLayoutPanel1.Width);
-                
             }
             catch
             {
+                ManagerError.ErrorOK("Произошла ошибка при сохранении изображения!");
+            }
+        }
 
+        //добавить изображение
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
+                {
+                    ManagerError.ErrorOK("Файл не выбран!");
+                    return;
+                }
+                //добавляем новый контейнер
+                AddLayer(Image.FromFile(openFileDialog.FileName), tableLayoutPanel1.Width);  
+            }
+            catch
+            {
                 ManagerError.ErrorOK("Произошла ошибка при добавлении картинки!");
             }
         }
+
         //собрать
         private void button3_Click(object sender, EventArgs e)
         {
@@ -125,18 +161,22 @@ namespace DIS
                 return;
             }
             //закрываем доступ к кнопка
-            button2.Enabled = false;
             button3.Enabled = false;
+            button5.Enabled = false;
 
             List<LayerValue> items = new List<LayerValue>();
             foreach(var item in layers)
             {
                 items.Add(new LayerValue(item));
+                item.Work = false;
+                item.B_showImage.BackColor = Color.LightGreen;
             }
+            button5.BackColor = Color.LightGreen;
 
             //запускаем операцию в другом потоке
             backgroundWorker1.RunWorkerAsync(items);
         }
+
         //сбросить график
         private void button4_Click(object sender, EventArgs e)
         {
@@ -147,12 +187,14 @@ namespace DIS
         {
             
         }
+
         //добавить/применить
         private void button5_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image == null) return;
             try
             {
+                if (pictureBox1.Image == null) return;
+
                 Layer Worklayer = layers.FirstOrDefault(x => x.Work == true);
                 if(Worklayer != null)
                 {
@@ -162,6 +204,8 @@ namespace DIS
                     Worklayer.pictureBox.Image.Dispose();
                     Worklayer.pictureBox.Image = (Image)pictureBox1.Image.Clone();
                     Worklayer.Work = false;
+                    Worklayer.B_showImage.BackColor = Color.LightGreen;
+                    button5.BackColor = Color.LightGreen;
                 }
                 else
                 {
@@ -174,6 +218,7 @@ namespace DIS
                 ManagerError.ErrorOK("Произошла ошибка при добавлении картинки!");
             }
         }
+
         //функция для добавления контейнера с изображением, а также обновления таблицы с контейнерами
         private void AddLayer(Image image, int width)
         {
@@ -203,6 +248,7 @@ namespace DIS
             tableLayoutPanel1.Controls.Add(layer.pictureBox, 0, row);
             tableLayoutPanel1.Controls.Add(layer.FlowLayoutPanel, 1, row);
         }
+
         //заменить главную картинку измененной с помощью градационных преобразований
         private void button6_Click(object sender, EventArgs e)
         {
@@ -211,6 +257,18 @@ namespace DIS
             canvas.Image = (Image)pictureBox1.Image.Clone();
 
             canvas.Clear();
+        }
+
+        //включить или выключить бинаризацию
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ManagerBinarization.StartOrStopBinar();
+        }
+
+        //выполнить бинаризацию (заменить главную картинку)
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            ManagerBinarization.PerformBinar();
         }
     }
 }

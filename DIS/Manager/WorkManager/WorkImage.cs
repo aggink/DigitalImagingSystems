@@ -23,11 +23,13 @@ namespace DIS.Manager
             //устанавливаем максимальный размеры картинки
             this.size = new Size(width, heigth);
             //редактируем изображение
-            Image img = SetImgChannelValue(value.image, value.Transparency, value.R, value.G, value.B);
+            Bitmap Vimg = new Bitmap(value.image);
+            Image img = SetImgChannelValue(Vimg, value.Transparency, value.R, value.G, value.B);
             //подгоняем изображение под один размер
             this.image =  new Bitmap(img, this.size);
             //очищаем память
             img.Dispose();
+            Vimg.Dispose();
         }
         //функция для слияния двух картинок
         public void MergeImages(LayerValue value)
@@ -174,14 +176,29 @@ namespace DIS.Manager
             return bmp;
         }
         //градационные преобразования
-        public static (Image, DataTable) GradationTransform(Image image, List<int> values, string col1, string col2)
+        public static (Image, DataTable) GradationTransform((Image image, int width, int heigth) img, List<int> values, string col1, string col2)
         {
+            int initial_width = img.image.Width;
+            int initial_heigth = img.image.Height;
+
             //создаем таблицу для построения гистограммы
             DataTable table = new DataTable("BarGraph");
             table.Columns.Add(col1, typeof(int));
             table.Columns.Add(col2, typeof(int));
 
-            Bitmap bmp = new Bitmap(image);
+            Bitmap bmp;
+            //изменяем размеры изображения
+            if (initial_width == img.width && initial_heigth == img.heigth)
+            {
+                //если исходный формат изображения совпадает с заданным
+                bmp = new Bitmap(img.image);
+            }
+            else
+            {
+                //иначе приводим к указанному размеру
+                bmp = new Bitmap(img.image, new Size(img.width, img.heigth));
+            }
+            
             Rectangle rectangle = new Rectangle(0, 0, bmp.Width, bmp.Height);
             BitmapData bitmapData = bmp.LockBits(rectangle, ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
             IntPtr intPtr = bitmapData.Scan0;
@@ -204,7 +221,45 @@ namespace DIS.Manager
             System.Runtime.InteropServices.Marshal.Copy(argb, 0, intPtr, bytes);
             bmp.UnlockBits(bitmapData);
 
-            return (bmp, table);
+            //возвращыем исходные размеры изображения
+            if(initial_width == img.width && initial_heigth == img.heigth)
+            {
+                //если исходный формат изображения совпадает с заданным
+                return (bmp, table);
+            }
+
+            //иначе возвращаем исходные размеры изображению
+            Bitmap bmp_return = new Bitmap(bmp, new Size(initial_width, initial_heigth));
+            bmp.Dispose();
+            return (bmp_return, table);
+        }
+
+        //приводим изображение к градациям серого
+        public static Image ConvertToGrayscale(Image img)
+        {
+            Bitmap image = new Bitmap(img);
+            Bitmap bmp = new Bitmap(image.Width, image.Height);
+            Graphics gfxPic = Graphics.FromImage(bmp);
+            ColorMatrix cmxPic = new ColorMatrix();
+            cmxPic.Matrix00 = 0.2125f;
+            cmxPic.Matrix01 = 0.2125f;
+            cmxPic.Matrix02 = 0.2125f;
+
+            cmxPic.Matrix10 = 0.7154f;
+            cmxPic.Matrix11 = 0.7154f;
+            cmxPic.Matrix12 = 0.7154f;
+
+            cmxPic.Matrix20 = 0.0721f;
+            cmxPic.Matrix21 = 0.0721f;
+            cmxPic.Matrix22 = 0.0721f;
+
+            ImageAttributes iaPic = new ImageAttributes();
+            iaPic.SetColorMatrix(cmxPic, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+            gfxPic.DrawImage(image, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, iaPic);
+            gfxPic.Dispose();
+            iaPic.Dispose();
+            image.Dispose();
+            return bmp;
         }
     }
 }

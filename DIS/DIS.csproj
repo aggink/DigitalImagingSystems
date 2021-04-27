@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Binarization\BradleyRota.cs" />
+    <Compile Include="Binarization\ChristianWolfe.cs" />
+    <Compile Include="Binarization\Gavrilov.cs" />
+    <Compile Include="Binarization\Nibleck.cs" />
+    <Compile Include="Binarization\Otsu.cs" />
+    <Compile Include="Binarization\Sauwolas.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,14 +65,15 @@
     <Compile Include="Interpolation\NewtonPolynomial.cs" />
     <Compile Include="Interpolation\QuadSpline.cs" />
     <Compile Include="Interpolation\СubicSpline.cs" />
-    <Compile Include="Manager\BackgroundWork.cs" />
-    <Compile Include="Manager\BarGraph.cs" />
-    <Compile Include="Manager\ManagerError.cs" />
-    <Compile Include="Manager\ManagerLayer.cs" />
-    <Compile Include="Manager\MyCanvas.cs">
+    <Compile Include="Manager\FormManager\ManagerBackgroundWork.cs" />
+    <Compile Include="Manager\WorkManager\BarGraph.cs" />
+    <Compile Include="Manager\FormManager\ManagerBinarization.cs" />
+    <Compile Include="Manager\WorkManager\ManagerError.cs" />
+    <Compile Include="Manager\FormManager\ManagerLayer.cs" />
+    <Compile Include="Manager\FormManager\MyCanvas.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Manager\WorkImage.cs" />
+    <Compile Include="Manager\WorkManager\WorkImage.cs" />
     <Compile Include="Model\Layer.cs" />
     <Compile Include="Model\LayerValue.cs" />
     <Compile Include="Program.cs" />
