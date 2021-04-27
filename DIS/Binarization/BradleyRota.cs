@@ -20,7 +20,7 @@ namespace DIS.Binarization
             if (k < min) k = min;
 
             Bitmap bmp = new Bitmap(image);
-            int height = bmp.Height + 1; // +1 ограничение <
+            int height = bmp.Height; 
             int width = bmp.Width;
 
             //создаем байтовый массив

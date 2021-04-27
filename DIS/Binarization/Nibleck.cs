@@ -15,7 +15,7 @@ namespace DIS.Binarization
         {
             Bitmap bmp = new Bitmap(image);
             int width = bmp.Width;
-            int height = bmp.Height + 1; // +1 ограничение <
+            int height = bmp.Height; // +1 ограничение <
 
             //создаем байтовый массив
             Rectangle rectangle = new Rectangle(0, 0, bmp.Width, bmp.Height);
