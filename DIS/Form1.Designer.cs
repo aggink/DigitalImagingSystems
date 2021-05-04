@@ -29,46 +29,69 @@ namespace DIS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.L_Time = new System.Windows.Forms.Label();
+            this.L_SizeImage = new System.Windows.Forms.Label();
+            this.B_ApplyImage = new System.Windows.Forms.Button();
+            this.B_Save = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.ImageEditor = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.B_CollectImages = new System.Windows.Forms.Button();
+            this.B_AddImage = new System.Windows.Forms.Button();
             this.GradationTran = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
+            this.B_GradTransApply = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.B_GradTransReturnToOrig = new System.Windows.Forms.Button();
+            this.CB_GradTranInterpolation = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Binarization = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.NUD_Koef = new System.Windows.Forms.NumericUpDown();
+            this.NUD_SizeWindow = new System.Windows.Forms.NumericUpDown();
             this.CB_BradleyRota = new System.Windows.Forms.CheckBox();
             this.CB_ChristianWolfe = new System.Windows.Forms.CheckBox();
             this.CB_Sauwolas = new System.Windows.Forms.CheckBox();
             this.CB_Nibleck = new System.Windows.Forms.CheckBox();
             this.CB_Otsu = new System.Windows.Forms.CheckBox();
             this.CB_Gavrilov = new System.Windows.Forms.CheckBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.B_Binarization = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.PB_OrigImageBinar = new System.Windows.Forms.PictureBox();
+            this.B_StartBinarization = new System.Windows.Forms.Button();
+            this.SpatialFiltering = new System.Windows.Forms.TabPage();
+            this.TC_SpatialFilter = new System.Windows.Forms.TabControl();
+            this.LinearFilter = new System.Windows.Forms.TabPage();
+            this.L_Spatial_MatrixSum = new System.Windows.Forms.Label();
+            this.B_LinearFiltering = new System.Windows.Forms.Button();
+            this.L_Spatial_Matrix = new System.Windows.Forms.Label();
+            this.TB_SpatialMatrix = new System.Windows.Forms.TextBox();
+            this.NUD_SpatialGausSigma = new System.Windows.Forms.NumericUpDown();
+            this.CB_GaussFilter = new System.Windows.Forms.CheckBox();
+            this.NUD_SpatialGausR = new System.Windows.Forms.NumericUpDown();
+            this.L_Spatial_GausR = new System.Windows.Forms.Label();
+            this.L_Spatial_GausSigma = new System.Windows.Forms.Label();
+            this.MedianFilter = new System.Windows.Forms.TabPage();
+            this.B_StartSpatialF = new System.Windows.Forms.Button();
+            this.PB_OrigImageSpatial = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.L_Spartial_SizeMatrix = new System.Windows.Forms.Label();
+            this.L_Spartial_Width = new System.Windows.Forms.Label();
+            this.L_Spartial_Height = new System.Windows.Forms.Label();
+            this.NUD_Spartial_Width = new System.Windows.Forms.NumericUpDown();
+            this.NUD_Spartial_Height = new System.Windows.Forms.NumericUpDown();
+            this.B_MedianFiltering = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -83,9 +106,18 @@ namespace DIS
             this.GradationTran.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.Binarization.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Koef)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_SizeWindow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageBinar)).BeginInit();
+            this.SpatialFiltering.SuspendLayout();
+            this.TC_SpatialFilter.SuspendLayout();
+            this.LinearFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_SpatialGausSigma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_SpatialGausR)).BeginInit();
+            this.MedianFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageSpatial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Height)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -98,8 +130,10 @@ namespace DIS
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button5);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.L_Time);
+            this.splitContainer1.Panel1.Controls.Add(this.L_SizeImage);
+            this.splitContainer1.Panel1.Controls.Add(this.B_ApplyImage);
+            this.splitContainer1.Panel1.Controls.Add(this.B_Save);
             this.splitContainer1.Panel1.Controls.Add(this.progressBar1);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             // 
@@ -110,38 +144,58 @@ namespace DIS
             this.splitContainer1.SplitterDistance = 1011;
             this.splitContainer1.TabIndex = 0;
             // 
-            // button5
+            // L_Time
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.L_Time.AutoSize = true;
+            this.L_Time.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.L_Time.Location = new System.Drawing.Point(22, 717);
+            this.L_Time.Name = "L_Time";
+            this.L_Time.Size = new System.Drawing.Size(332, 25);
+            this.L_Time.TabIndex = 6;
+            this.L_Time.Text = "Время обработки изображения:";
+            // 
+            // L_SizeImage
+            // 
+            this.L_SizeImage.AutoSize = true;
+            this.L_SizeImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.L_SizeImage.Location = new System.Drawing.Point(22, 677);
+            this.L_SizeImage.Name = "L_SizeImage";
+            this.L_SizeImage.Size = new System.Drawing.Size(233, 25);
+            this.L_SizeImage.TabIndex = 5;
+            this.L_SizeImage.Text = "Размер изображения:";
+            // 
+            // B_ApplyImage
+            // 
+            this.B_ApplyImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.BackColor = System.Drawing.Color.LightGreen;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button5.Location = new System.Drawing.Point(938, 668);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(50, 46);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "🠖";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.B_ApplyImage.BackColor = System.Drawing.Color.LightGreen;
+            this.B_ApplyImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_ApplyImage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_ApplyImage.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_ApplyImage.Location = new System.Drawing.Point(938, 668);
+            this.B_ApplyImage.Name = "B_ApplyImage";
+            this.B_ApplyImage.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.B_ApplyImage.Size = new System.Drawing.Size(50, 46);
+            this.B_ApplyImage.TabIndex = 4;
+            this.B_ApplyImage.Text = "🠖";
+            this.B_ApplyImage.UseVisualStyleBackColor = false;
+            this.B_ApplyImage.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button1
+            // B_Save
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.B_Save.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.LightGreen;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button1.Location = new System.Drawing.Point(699, 668);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(233, 46);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.B_Save.BackColor = System.Drawing.Color.LightGreen;
+            this.B_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_Save.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_Save.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_Save.Location = new System.Drawing.Point(699, 668);
+            this.B_Save.Name = "B_Save";
+            this.B_Save.Size = new System.Drawing.Size(233, 46);
+            this.B_Save.TabIndex = 3;
+            this.B_Save.Text = "Сохранить";
+            this.B_Save.UseVisualStyleBackColor = false;
+            this.B_Save.Click += new System.EventHandler(this.button1_Click);
             // 
             // progressBar1
             // 
@@ -172,6 +226,7 @@ namespace DIS
             this.TabControl1.Controls.Add(this.ImageEditor);
             this.TabControl1.Controls.Add(this.GradationTran);
             this.TabControl1.Controls.Add(this.Binarization);
+            this.TabControl1.Controls.Add(this.SpatialFiltering);
             this.TabControl1.Location = new System.Drawing.Point(13, 12);
             this.TabControl1.Multiline = true;
             this.TabControl1.Name = "TabControl1";
@@ -183,10 +238,10 @@ namespace DIS
             // ImageEditor
             // 
             this.ImageEditor.Controls.Add(this.splitContainer3);
-            this.ImageEditor.Location = new System.Drawing.Point(4, 22);
+            this.ImageEditor.Location = new System.Drawing.Point(4, 40);
             this.ImageEditor.Name = "ImageEditor";
             this.ImageEditor.Padding = new System.Windows.Forms.Padding(3);
-            this.ImageEditor.Size = new System.Drawing.Size(347, 778);
+            this.ImageEditor.Size = new System.Drawing.Size(347, 760);
             this.ImageEditor.TabIndex = 3;
             this.ImageEditor.Text = "Редактор";
             this.ImageEditor.UseVisualStyleBackColor = true;
@@ -204,10 +259,10 @@ namespace DIS
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.button3);
-            this.splitContainer3.Panel2.Controls.Add(this.button2);
-            this.splitContainer3.Size = new System.Drawing.Size(341, 772);
-            this.splitContainer3.SplitterDistance = 587;
+            this.splitContainer3.Panel2.Controls.Add(this.B_CollectImages);
+            this.splitContainer3.Panel2.Controls.Add(this.B_AddImage);
+            this.splitContainer3.Size = new System.Drawing.Size(341, 754);
+            this.splitContainer3.SplitterDistance = 573;
             this.splitContainer3.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -227,113 +282,113 @@ namespace DIS
             this.tableLayoutPanel1.Size = new System.Drawing.Size(335, 569);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // button3
+            // B_CollectImages
             // 
-            this.button3.BackColor = System.Drawing.Color.LightGreen;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(184, 15);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 55);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Собрать ";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.B_CollectImages.BackColor = System.Drawing.Color.LightGreen;
+            this.B_CollectImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_CollectImages.Location = new System.Drawing.Point(184, 15);
+            this.B_CollectImages.Name = "B_CollectImages";
+            this.B_CollectImages.Size = new System.Drawing.Size(121, 55);
+            this.B_CollectImages.TabIndex = 3;
+            this.B_CollectImages.Text = "Собрать ";
+            this.B_CollectImages.UseVisualStyleBackColor = false;
+            this.B_CollectImages.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // B_AddImage
             // 
-            this.button2.BackColor = System.Drawing.Color.LightGreen;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(22, 15);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 55);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Добавить изображение";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.B_AddImage.BackColor = System.Drawing.Color.LightGreen;
+            this.B_AddImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_AddImage.Location = new System.Drawing.Point(22, 15);
+            this.B_AddImage.Name = "B_AddImage";
+            this.B_AddImage.Size = new System.Drawing.Size(121, 55);
+            this.B_AddImage.TabIndex = 2;
+            this.B_AddImage.Text = "Добавить изображение";
+            this.B_AddImage.UseVisualStyleBackColor = false;
+            this.B_AddImage.Click += new System.EventHandler(this.button2_Click);
             // 
             // GradationTran
             // 
-            this.GradationTran.Controls.Add(this.button6);
+            this.GradationTran.Controls.Add(this.B_GradTransApply);
             this.GradationTran.Controls.Add(this.chart1);
-            this.GradationTran.Controls.Add(this.button4);
-            this.GradationTran.Controls.Add(this.comboBox1);
+            this.GradationTran.Controls.Add(this.B_GradTransReturnToOrig);
+            this.GradationTran.Controls.Add(this.CB_GradTranInterpolation);
             this.GradationTran.Controls.Add(this.panel1);
-            this.GradationTran.Location = new System.Drawing.Point(4, 22);
+            this.GradationTran.Location = new System.Drawing.Point(4, 40);
             this.GradationTran.Name = "GradationTran";
             this.GradationTran.Padding = new System.Windows.Forms.Padding(3);
-            this.GradationTran.Size = new System.Drawing.Size(347, 778);
+            this.GradationTran.Size = new System.Drawing.Size(347, 760);
             this.GradationTran.TabIndex = 1;
             this.GradationTran.Text = "Градационные преобразования";
             this.GradationTran.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // B_GradTransApply
             // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.B_GradTransApply.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.BackColor = System.Drawing.Color.LightGreen;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button6.Location = new System.Drawing.Point(61, 614);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(229, 34);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "Применить";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.B_GradTransApply.BackColor = System.Drawing.Color.LightGreen;
+            this.B_GradTransApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_GradTransApply.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_GradTransApply.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_GradTransApply.Location = new System.Drawing.Point(62, 616);
+            this.B_GradTransApply.Name = "B_GradTransApply";
+            this.B_GradTransApply.Size = new System.Drawing.Size(229, 46);
+            this.B_GradTransApply.TabIndex = 4;
+            this.B_GradTransApply.Text = "Применить";
+            this.B_GradTransApply.UseVisualStyleBackColor = false;
+            this.B_GradTransApply.Click += new System.EventHandler(this.button6_Click);
             // 
             // chart1
             // 
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chart1.BackColor = System.Drawing.Color.LightGray;
-            chartArea3.AxisX.LabelStyle.Enabled = false;
-            chartArea3.AxisX.MajorGrid.Enabled = false;
-            chartArea3.AxisY.LabelStyle.Enabled = false;
-            chartArea3.AxisY.MajorGrid.Enabled = false;
-            chartArea3.BackColor = System.Drawing.Color.White;
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            this.chart1.Location = new System.Drawing.Point(3, 409);
+            chartArea4.AxisX.LabelStyle.Enabled = false;
+            chartArea4.AxisX.MajorGrid.Enabled = false;
+            chartArea4.AxisY.LabelStyle.Enabled = false;
+            chartArea4.AxisY.MajorGrid.Enabled = false;
+            chartArea4.BackColor = System.Drawing.Color.White;
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            this.chart1.Location = new System.Drawing.Point(5, 412);
             this.chart1.Margin = new System.Windows.Forms.Padding(1);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series3.BorderColor = System.Drawing.Color.Black;
-            series3.BorderWidth = 0;
-            series3.ChartArea = "ChartArea1";
-            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series3.CustomProperties = "PointWidth=1";
-            series3.LabelBackColor = System.Drawing.Color.White;
-            series3.LabelBorderColor = System.Drawing.Color.White;
-            series3.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
-            series3.LabelBorderWidth = 0;
-            series3.Name = "Series1";
-            series3.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chart1.Series.Add(series3);
+            series4.BorderColor = System.Drawing.Color.Black;
+            series4.BorderWidth = 0;
+            series4.ChartArea = "ChartArea1";
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series4.CustomProperties = "PointWidth=1";
+            series4.LabelBackColor = System.Drawing.Color.White;
+            series4.LabelBorderColor = System.Drawing.Color.White;
+            series4.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            series4.LabelBorderWidth = 0;
+            series4.Name = "Series1";
+            series4.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(342, 188);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "Гистограмма";
             // 
-            // button4
+            // B_GradTransReturnToOrig
             // 
-            this.button4.BackColor = System.Drawing.Color.LightGreen;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button4.Location = new System.Drawing.Point(4, 381);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(342, 24);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Сбросить";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.B_GradTransReturnToOrig.BackColor = System.Drawing.Color.LightGreen;
+            this.B_GradTransReturnToOrig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_GradTransReturnToOrig.Location = new System.Drawing.Point(4, 381);
+            this.B_GradTransReturnToOrig.Name = "B_GradTransReturnToOrig";
+            this.B_GradTransReturnToOrig.Size = new System.Drawing.Size(342, 27);
+            this.B_GradTransReturnToOrig.TabIndex = 2;
+            this.B_GradTransReturnToOrig.Text = "Сбросить";
+            this.B_GradTransReturnToOrig.UseVisualStyleBackColor = false;
+            this.B_GradTransReturnToOrig.Click += new System.EventHandler(this.button4_Click);
             // 
-            // comboBox1
+            // CB_GradTranInterpolation
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 351);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(342, 24);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.CB_GradTranInterpolation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CB_GradTranInterpolation.FormattingEnabled = true;
+            this.CB_GradTranInterpolation.Location = new System.Drawing.Point(3, 351);
+            this.CB_GradTranInterpolation.Name = "CB_GradTranInterpolation";
+            this.CB_GradTranInterpolation.Size = new System.Drawing.Size(342, 24);
+            this.CB_GradTranInterpolation.TabIndex = 1;
+            this.CB_GradTranInterpolation.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -346,27 +401,27 @@ namespace DIS
             // 
             this.Binarization.Controls.Add(this.label8);
             this.Binarization.Controls.Add(this.label7);
-            this.Binarization.Controls.Add(this.numericUpDown2);
-            this.Binarization.Controls.Add(this.numericUpDown1);
+            this.Binarization.Controls.Add(this.NUD_Koef);
+            this.Binarization.Controls.Add(this.NUD_SizeWindow);
             this.Binarization.Controls.Add(this.CB_BradleyRota);
             this.Binarization.Controls.Add(this.CB_ChristianWolfe);
             this.Binarization.Controls.Add(this.CB_Sauwolas);
             this.Binarization.Controls.Add(this.CB_Nibleck);
             this.Binarization.Controls.Add(this.CB_Otsu);
             this.Binarization.Controls.Add(this.CB_Gavrilov);
-            this.Binarization.Controls.Add(this.button8);
+            this.Binarization.Controls.Add(this.B_Binarization);
             this.Binarization.Controls.Add(this.label6);
             this.Binarization.Controls.Add(this.label5);
             this.Binarization.Controls.Add(this.label4);
             this.Binarization.Controls.Add(this.label3);
             this.Binarization.Controls.Add(this.label2);
             this.Binarization.Controls.Add(this.label1);
-            this.Binarization.Controls.Add(this.pictureBox2);
-            this.Binarization.Controls.Add(this.button7);
-            this.Binarization.Location = new System.Drawing.Point(4, 22);
+            this.Binarization.Controls.Add(this.PB_OrigImageBinar);
+            this.Binarization.Controls.Add(this.B_StartBinarization);
+            this.Binarization.Location = new System.Drawing.Point(4, 40);
             this.Binarization.Name = "Binarization";
             this.Binarization.Padding = new System.Windows.Forms.Padding(3);
-            this.Binarization.Size = new System.Drawing.Size(347, 778);
+            this.Binarization.Size = new System.Drawing.Size(347, 760);
             this.Binarization.TabIndex = 4;
             this.Binarization.Text = "Бинаризация";
             this.Binarization.UseVisualStyleBackColor = true;
@@ -389,55 +444,55 @@ namespace DIS
             this.label7.TabIndex = 27;
             this.label7.Text = "Размер окна";
             // 
-            // numericUpDown2
+            // NUD_Koef
             // 
-            this.numericUpDown2.DecimalPlaces = 5;
-            this.numericUpDown2.Enabled = false;
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this.NUD_Koef.DecimalPlaces = 5;
+            this.NUD_Koef.Enabled = false;
+            this.NUD_Koef.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown2.Location = new System.Drawing.Point(228, 650);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.NUD_Koef.Location = new System.Drawing.Point(228, 650);
+            this.NUD_Koef.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.NUD_Koef.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             -2147483648});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(70, 20);
-            this.numericUpDown2.TabIndex = 26;
-            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NUD_Koef.Name = "NUD_Koef";
+            this.NUD_Koef.Size = new System.Drawing.Size(70, 20);
+            this.NUD_Koef.TabIndex = 26;
+            this.NUD_Koef.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // numericUpDown1
+            // NUD_SizeWindow
             // 
-            this.numericUpDown1.Enabled = false;
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.NUD_SizeWindow.Enabled = false;
+            this.NUD_SizeWindow.Increment = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(54, 650);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.NUD_SizeWindow.Location = new System.Drawing.Point(54, 650);
+            this.NUD_SizeWindow.Maximum = new decimal(new int[] {
             1001,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.NUD_SizeWindow.Minimum = new decimal(new int[] {
             3,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(70, 20);
-            this.numericUpDown1.TabIndex = 25;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.NUD_SizeWindow.Name = "NUD_SizeWindow";
+            this.NUD_SizeWindow.Size = new System.Drawing.Size(70, 20);
+            this.NUD_SizeWindow.TabIndex = 25;
+            this.NUD_SizeWindow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NUD_SizeWindow.Value = new decimal(new int[] {
             3,
             0,
             0,
@@ -539,21 +594,21 @@ namespace DIS
             this.CB_Gavrilov.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CB_Gavrilov.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // B_Binarization
             // 
-            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.B_Binarization.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button8.BackColor = System.Drawing.Color.LightGreen;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button8.Location = new System.Drawing.Point(3, 738);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(335, 34);
-            this.button8.TabIndex = 18;
-            this.button8.Text = "Бинаризировать";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click_1);
+            this.B_Binarization.BackColor = System.Drawing.Color.LightGreen;
+            this.B_Binarization.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_Binarization.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_Binarization.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_Binarization.Location = new System.Drawing.Point(6, 716);
+            this.B_Binarization.Name = "B_Binarization";
+            this.B_Binarization.Size = new System.Drawing.Size(335, 38);
+            this.B_Binarization.TabIndex = 18;
+            this.B_Binarization.Text = "Бинаризировать";
+            this.B_Binarization.UseVisualStyleBackColor = false;
+            this.B_Binarization.Click += new System.EventHandler(this.button8_Click_1);
             // 
             // label6
             // 
@@ -609,33 +664,318 @@ namespace DIS
             this.label1.TabIndex = 12;
             this.label1.Text = "Критерий Гаврилова";
             // 
-            // pictureBox2
+            // PB_OrigImageBinar
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PB_OrigImageBinar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Enabled = false;
-            this.pictureBox2.Location = new System.Drawing.Point(6, 63);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(335, 202);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
+            this.PB_OrigImageBinar.Enabled = false;
+            this.PB_OrigImageBinar.Location = new System.Drawing.Point(6, 63);
+            this.PB_OrigImageBinar.Name = "PB_OrigImageBinar";
+            this.PB_OrigImageBinar.Size = new System.Drawing.Size(335, 184);
+            this.PB_OrigImageBinar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_OrigImageBinar.TabIndex = 6;
+            this.PB_OrigImageBinar.TabStop = false;
             // 
-            // button7
+            // B_StartBinarization
             // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.B_StartBinarization.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.BackColor = System.Drawing.Color.LightGreen;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button7.Location = new System.Drawing.Point(54, 15);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(229, 34);
-            this.button7.TabIndex = 4;
-            this.button7.Text = "Начать";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.B_StartBinarization.BackColor = System.Drawing.Color.LightGreen;
+            this.B_StartBinarization.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_StartBinarization.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_StartBinarization.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_StartBinarization.Location = new System.Drawing.Point(54, 15);
+            this.B_StartBinarization.Name = "B_StartBinarization";
+            this.B_StartBinarization.Size = new System.Drawing.Size(229, 42);
+            this.B_StartBinarization.TabIndex = 4;
+            this.B_StartBinarization.Text = "Начать";
+            this.B_StartBinarization.UseVisualStyleBackColor = false;
+            this.B_StartBinarization.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // SpatialFiltering
+            // 
+            this.SpatialFiltering.Controls.Add(this.TC_SpatialFilter);
+            this.SpatialFiltering.Controls.Add(this.B_StartSpatialF);
+            this.SpatialFiltering.Controls.Add(this.PB_OrigImageSpatial);
+            this.SpatialFiltering.Location = new System.Drawing.Point(4, 40);
+            this.SpatialFiltering.Name = "SpatialFiltering";
+            this.SpatialFiltering.Padding = new System.Windows.Forms.Padding(3);
+            this.SpatialFiltering.Size = new System.Drawing.Size(347, 760);
+            this.SpatialFiltering.TabIndex = 5;
+            this.SpatialFiltering.Text = "Пространственная фильтрация";
+            this.SpatialFiltering.UseVisualStyleBackColor = true;
+            // 
+            // TC_SpatialFilter
+            // 
+            this.TC_SpatialFilter.Controls.Add(this.LinearFilter);
+            this.TC_SpatialFilter.Controls.Add(this.MedianFilter);
+            this.TC_SpatialFilter.Location = new System.Drawing.Point(8, 246);
+            this.TC_SpatialFilter.Name = "TC_SpatialFilter";
+            this.TC_SpatialFilter.SelectedIndex = 0;
+            this.TC_SpatialFilter.Size = new System.Drawing.Size(334, 508);
+            this.TC_SpatialFilter.TabIndex = 31;
+            // 
+            // LinearFilter
+            // 
+            this.LinearFilter.Controls.Add(this.L_Spatial_MatrixSum);
+            this.LinearFilter.Controls.Add(this.B_LinearFiltering);
+            this.LinearFilter.Controls.Add(this.L_Spatial_Matrix);
+            this.LinearFilter.Controls.Add(this.TB_SpatialMatrix);
+            this.LinearFilter.Controls.Add(this.NUD_SpatialGausSigma);
+            this.LinearFilter.Controls.Add(this.CB_GaussFilter);
+            this.LinearFilter.Controls.Add(this.NUD_SpatialGausR);
+            this.LinearFilter.Controls.Add(this.L_Spatial_GausR);
+            this.LinearFilter.Controls.Add(this.L_Spatial_GausSigma);
+            this.LinearFilter.Location = new System.Drawing.Point(4, 22);
+            this.LinearFilter.Name = "LinearFilter";
+            this.LinearFilter.Padding = new System.Windows.Forms.Padding(3);
+            this.LinearFilter.Size = new System.Drawing.Size(326, 482);
+            this.LinearFilter.TabIndex = 0;
+            this.LinearFilter.Text = "Линейная";
+            this.LinearFilter.UseVisualStyleBackColor = true;
+            // 
+            // L_Spatial_MatrixSum
+            // 
+            this.L_Spatial_MatrixSum.AutoSize = true;
+            this.L_Spatial_MatrixSum.Enabled = false;
+            this.L_Spatial_MatrixSum.Location = new System.Drawing.Point(16, 317);
+            this.L_Spatial_MatrixSum.Name = "L_Spatial_MatrixSum";
+            this.L_Spatial_MatrixSum.Size = new System.Drawing.Size(92, 13);
+            this.L_Spatial_MatrixSum.TabIndex = 30;
+            this.L_Spatial_MatrixSum.Text = "Сумма матрицы:";
+            // 
+            // B_LinearFiltering
+            // 
+            this.B_LinearFiltering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_LinearFiltering.BackColor = System.Drawing.Color.LightGreen;
+            this.B_LinearFiltering.Enabled = false;
+            this.B_LinearFiltering.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_LinearFiltering.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_LinearFiltering.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_LinearFiltering.Location = new System.Drawing.Point(7, 438);
+            this.B_LinearFiltering.Name = "B_LinearFiltering";
+            this.B_LinearFiltering.Size = new System.Drawing.Size(312, 38);
+            this.B_LinearFiltering.TabIndex = 29;
+            this.B_LinearFiltering.Text = "Выполнить";
+            this.B_LinearFiltering.UseVisualStyleBackColor = false;
+            // 
+            // L_Spatial_Matrix
+            // 
+            this.L_Spatial_Matrix.AutoSize = true;
+            this.L_Spatial_Matrix.Enabled = false;
+            this.L_Spatial_Matrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.L_Spatial_Matrix.Location = new System.Drawing.Point(89, 12);
+            this.L_Spatial_Matrix.Name = "L_Spatial_Matrix";
+            this.L_Spatial_Matrix.Size = new System.Drawing.Size(143, 20);
+            this.L_Spatial_Matrix.TabIndex = 11;
+            this.L_Spatial_Matrix.Text = "Задайте матрицу";
+            // 
+            // TB_SpatialMatrix
+            // 
+            this.TB_SpatialMatrix.AcceptsTab = true;
+            this.TB_SpatialMatrix.Enabled = false;
+            this.TB_SpatialMatrix.Location = new System.Drawing.Point(7, 43);
+            this.TB_SpatialMatrix.Multiline = true;
+            this.TB_SpatialMatrix.Name = "TB_SpatialMatrix";
+            this.TB_SpatialMatrix.Size = new System.Drawing.Size(312, 190);
+            this.TB_SpatialMatrix.TabIndex = 10;
+            // 
+            // NUD_SpatialGausSigma
+            // 
+            this.NUD_SpatialGausSigma.DecimalPlaces = 3;
+            this.NUD_SpatialGausSigma.Enabled = false;
+            this.NUD_SpatialGausSigma.Location = new System.Drawing.Point(187, 279);
+            this.NUD_SpatialGausSigma.Maximum = new decimal(new int[] {
+            1001,
+            0,
+            0,
+            0});
+            this.NUD_SpatialGausSigma.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_SpatialGausSigma.Name = "NUD_SpatialGausSigma";
+            this.NUD_SpatialGausSigma.Size = new System.Drawing.Size(70, 20);
+            this.NUD_SpatialGausSigma.TabIndex = 27;
+            this.NUD_SpatialGausSigma.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NUD_SpatialGausSigma.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // CB_GaussFilter
+            // 
+            this.CB_GaussFilter.AutoSize = true;
+            this.CB_GaussFilter.Enabled = false;
+            this.CB_GaussFilter.Location = new System.Drawing.Point(93, 239);
+            this.CB_GaussFilter.Name = "CB_GaussFilter";
+            this.CB_GaussFilter.Size = new System.Drawing.Size(131, 17);
+            this.CB_GaussFilter.TabIndex = 12;
+            this.CB_GaussFilter.Text = "Гауссовский фильтр";
+            this.CB_GaussFilter.UseVisualStyleBackColor = true;
+            // 
+            // NUD_SpatialGausR
+            // 
+            this.NUD_SpatialGausR.Enabled = false;
+            this.NUD_SpatialGausR.Location = new System.Drawing.Point(51, 279);
+            this.NUD_SpatialGausR.Maximum = new decimal(new int[] {
+            1001,
+            0,
+            0,
+            0});
+            this.NUD_SpatialGausR.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_SpatialGausR.Name = "NUD_SpatialGausR";
+            this.NUD_SpatialGausR.Size = new System.Drawing.Size(70, 20);
+            this.NUD_SpatialGausR.TabIndex = 26;
+            this.NUD_SpatialGausR.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NUD_SpatialGausR.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // L_Spatial_GausR
+            // 
+            this.L_Spatial_GausR.AutoSize = true;
+            this.L_Spatial_GausR.Enabled = false;
+            this.L_Spatial_GausR.Location = new System.Drawing.Point(65, 263);
+            this.L_Spatial_GausR.Name = "L_Spatial_GausR";
+            this.L_Spatial_GausR.Size = new System.Drawing.Size(43, 13);
+            this.L_Spatial_GausR.TabIndex = 13;
+            this.L_Spatial_GausR.Text = "Радиус";
+            // 
+            // L_Spatial_GausSigma
+            // 
+            this.L_Spatial_GausSigma.AutoSize = true;
+            this.L_Spatial_GausSigma.Enabled = false;
+            this.L_Spatial_GausSigma.Location = new System.Drawing.Point(201, 263);
+            this.L_Spatial_GausSigma.Name = "L_Spatial_GausSigma";
+            this.L_Spatial_GausSigma.Size = new System.Drawing.Size(39, 13);
+            this.L_Spatial_GausSigma.TabIndex = 14;
+            this.L_Spatial_GausSigma.Text = "Сигма";
+            // 
+            // MedianFilter
+            // 
+            this.MedianFilter.Controls.Add(this.B_MedianFiltering);
+            this.MedianFilter.Controls.Add(this.NUD_Spartial_Height);
+            this.MedianFilter.Controls.Add(this.NUD_Spartial_Width);
+            this.MedianFilter.Controls.Add(this.L_Spartial_Height);
+            this.MedianFilter.Controls.Add(this.L_Spartial_Width);
+            this.MedianFilter.Controls.Add(this.L_Spartial_SizeMatrix);
+            this.MedianFilter.Location = new System.Drawing.Point(4, 22);
+            this.MedianFilter.Name = "MedianFilter";
+            this.MedianFilter.Padding = new System.Windows.Forms.Padding(3);
+            this.MedianFilter.Size = new System.Drawing.Size(326, 482);
+            this.MedianFilter.TabIndex = 1;
+            this.MedianFilter.Text = "Медианная";
+            this.MedianFilter.UseVisualStyleBackColor = true;
+            // 
+            // B_StartSpatialF
+            // 
+            this.B_StartSpatialF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_StartSpatialF.BackColor = System.Drawing.Color.LightGreen;
+            this.B_StartSpatialF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_StartSpatialF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_StartSpatialF.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_StartSpatialF.Location = new System.Drawing.Point(54, 8);
+            this.B_StartSpatialF.Name = "B_StartSpatialF";
+            this.B_StartSpatialF.Size = new System.Drawing.Size(229, 42);
+            this.B_StartSpatialF.TabIndex = 8;
+            this.B_StartSpatialF.Text = "Начать";
+            this.B_StartSpatialF.UseVisualStyleBackColor = false;
+            // 
+            // PB_OrigImageSpatial
+            // 
+            this.PB_OrigImageSpatial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PB_OrigImageSpatial.Enabled = false;
+            this.PB_OrigImageSpatial.Location = new System.Drawing.Point(6, 56);
+            this.PB_OrigImageSpatial.Name = "PB_OrigImageSpatial";
+            this.PB_OrigImageSpatial.Size = new System.Drawing.Size(335, 184);
+            this.PB_OrigImageSpatial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_OrigImageSpatial.TabIndex = 7;
+            this.PB_OrigImageSpatial.TabStop = false;
+            // 
+            // L_Spartial_SizeMatrix
+            // 
+            this.L_Spartial_SizeMatrix.AutoSize = true;
+            this.L_Spartial_SizeMatrix.Enabled = false;
+            this.L_Spartial_SizeMatrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.L_Spartial_SizeMatrix.Location = new System.Drawing.Point(63, 16);
+            this.L_Spartial_SizeMatrix.Name = "L_Spartial_SizeMatrix";
+            this.L_Spartial_SizeMatrix.Size = new System.Drawing.Size(206, 20);
+            this.L_Spartial_SizeMatrix.TabIndex = 12;
+            this.L_Spartial_SizeMatrix.Text = "Задайте размер матрицы";
+            // 
+            // L_Spartial_Width
+            // 
+            this.L_Spartial_Width.AutoSize = true;
+            this.L_Spartial_Width.Location = new System.Drawing.Point(33, 57);
+            this.L_Spartial_Width.Name = "L_Spartial_Width";
+            this.L_Spartial_Width.Size = new System.Drawing.Size(101, 13);
+            this.L_Spartial_Width.TabIndex = 13;
+            this.L_Spartial_Width.Text = "Шаг влево/вправо";
+            // 
+            // L_Spartial_Height
+            // 
+            this.L_Spartial_Height.AutoSize = true;
+            this.L_Spartial_Height.Location = new System.Drawing.Point(203, 57);
+            this.L_Spartial_Height.Name = "L_Spartial_Height";
+            this.L_Spartial_Height.Size = new System.Drawing.Size(88, 13);
+            this.L_Spartial_Height.TabIndex = 14;
+            this.L_Spartial_Height.Text = "Шаг вверх/вниз";
+            // 
+            // NUD_Spartial_Width
+            // 
+            this.NUD_Spartial_Width.Enabled = false;
+            this.NUD_Spartial_Width.Location = new System.Drawing.Point(48, 73);
+            this.NUD_Spartial_Width.Maximum = new decimal(new int[] {
+            1001,
+            0,
+            0,
+            0});
+            this.NUD_Spartial_Width.Name = "NUD_Spartial_Width";
+            this.NUD_Spartial_Width.Size = new System.Drawing.Size(70, 20);
+            this.NUD_Spartial_Width.TabIndex = 27;
+            this.NUD_Spartial_Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // NUD_Spartial_Height
+            // 
+            this.NUD_Spartial_Height.Enabled = false;
+            this.NUD_Spartial_Height.Location = new System.Drawing.Point(212, 73);
+            this.NUD_Spartial_Height.Maximum = new decimal(new int[] {
+            1001,
+            0,
+            0,
+            0});
+            this.NUD_Spartial_Height.Name = "NUD_Spartial_Height";
+            this.NUD_Spartial_Height.Size = new System.Drawing.Size(70, 20);
+            this.NUD_Spartial_Height.TabIndex = 28;
+            this.NUD_Spartial_Height.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // B_MedianFiltering
+            // 
+            this.B_MedianFiltering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_MedianFiltering.BackColor = System.Drawing.Color.LightGreen;
+            this.B_MedianFiltering.Enabled = false;
+            this.B_MedianFiltering.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_MedianFiltering.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_MedianFiltering.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_MedianFiltering.Location = new System.Drawing.Point(7, 109);
+            this.B_MedianFiltering.Name = "B_MedianFiltering";
+            this.B_MedianFiltering.Size = new System.Drawing.Size(312, 38);
+            this.B_MedianFiltering.TabIndex = 30;
+            this.B_MedianFiltering.Text = "Выполнить";
+            this.B_MedianFiltering.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -648,6 +988,7 @@ namespace DIS
             this.Name = "Form1";
             this.Text = "Form1";
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -662,9 +1003,20 @@ namespace DIS
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.Binarization.ResumeLayout(false);
             this.Binarization.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Koef)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_SizeWindow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageBinar)).EndInit();
+            this.SpatialFiltering.ResumeLayout(false);
+            this.TC_SpatialFilter.ResumeLayout(false);
+            this.LinearFilter.ResumeLayout(false);
+            this.LinearFilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_SpatialGausSigma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_SpatialGausR)).EndInit();
+            this.MedianFilter.ResumeLayout(false);
+            this.MedianFilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageSpatial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Height)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -672,33 +1024,33 @@ namespace DIS
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button B_Save;
         internal System.Windows.Forms.ProgressBar progressBar1;
         internal System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabControl TabControl1;
         private System.Windows.Forms.TabPage GradationTran;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button B_GradTransReturnToOrig;
+        private System.Windows.Forms.ComboBox CB_GradTranInterpolation;
         private System.Windows.Forms.TabPage ImageEditor;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        internal System.Windows.Forms.Button button3;
-        internal System.Windows.Forms.Button button2;
+        internal System.Windows.Forms.Button B_CollectImages;
+        internal System.Windows.Forms.Button B_AddImage;
         internal System.ComponentModel.BackgroundWorker backgroundWorker1;
         internal System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button B_GradTransApply;
         internal System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabPage Binarization;
-        private System.Windows.Forms.Button button7;
-        internal System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button B_StartBinarization;
+        internal System.Windows.Forms.Button B_ApplyImage;
+        private System.Windows.Forms.Button B_Binarization;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.PictureBox pictureBox2;
+        internal System.Windows.Forms.PictureBox PB_OrigImageBinar;
         public System.Windows.Forms.CheckBox CB_BradleyRota;
         public System.Windows.Forms.CheckBox CB_ChristianWolfe;
         public System.Windows.Forms.CheckBox CB_Sauwolas;
@@ -707,8 +1059,31 @@ namespace DIS
         public System.Windows.Forms.CheckBox CB_Gavrilov;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        public System.Windows.Forms.NumericUpDown numericUpDown2;
-        public System.Windows.Forms.NumericUpDown numericUpDown1;
+        public System.Windows.Forms.NumericUpDown NUD_Koef;
+        public System.Windows.Forms.NumericUpDown NUD_SizeWindow;
+        internal System.Windows.Forms.Label L_Time;
+        internal System.Windows.Forms.Label L_SizeImage;
+        private System.Windows.Forms.TabPage SpatialFiltering;
+        internal System.Windows.Forms.PictureBox PB_OrigImageSpatial;
+        internal System.Windows.Forms.Button B_StartSpatialF;
+        internal System.Windows.Forms.TextBox TB_SpatialMatrix;
+        private System.Windows.Forms.Button B_LinearFiltering;
+        internal System.Windows.Forms.NumericUpDown NUD_SpatialGausSigma;
+        internal System.Windows.Forms.NumericUpDown NUD_SpatialGausR;
+        internal System.Windows.Forms.CheckBox CB_GaussFilter;
+        internal System.Windows.Forms.Label L_Spatial_Matrix;
+        internal System.Windows.Forms.Label L_Spatial_GausSigma;
+        internal System.Windows.Forms.Label L_Spatial_GausR;
+        internal System.Windows.Forms.Label L_Spatial_MatrixSum;
+        internal System.Windows.Forms.TabControl TC_SpatialFilter;
+        private System.Windows.Forms.TabPage LinearFilter;
+        private System.Windows.Forms.TabPage MedianFilter;
+        internal System.Windows.Forms.Button B_MedianFiltering;
+        internal System.Windows.Forms.NumericUpDown NUD_Spartial_Height;
+        internal System.Windows.Forms.NumericUpDown NUD_Spartial_Width;
+        internal System.Windows.Forms.Label L_Spartial_Height;
+        internal System.Windows.Forms.Label L_Spartial_Width;
+        internal System.Windows.Forms.Label L_Spartial_SizeMatrix;
     }
 }
 

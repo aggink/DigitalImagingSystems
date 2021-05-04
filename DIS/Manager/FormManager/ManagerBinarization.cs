@@ -226,7 +226,7 @@ namespace DIS.Manager
             int width = (int)Math.Round(ImageBinar.Image.Width / (double)(ImageBinar.Image.Height / (SizeCheckBox.Height * 1.0)));
             int height = SizeCheckBox.Height;
 
-            Image tmp= new Bitmap(Image, width, height);
+            Image tmp = new Bitmap(Image, width, height);
 
             if (CB_Gavrilov.BackgroundImage != null) CB_Gavrilov.BackgroundImage.Dispose();
             CB_Gavrilov.BackgroundImage = await Task.Run(()=> Gavrilov.Binarization(tmp, CheckColor));
@@ -247,6 +247,8 @@ namespace DIS.Manager
             CB_BradleyRota.BackgroundImage = await Task.Run(() => BradleyRota.Binarization(tmp, P_BradleyRote.size, (double)P_BradleyRote.k, CheckColor));
 
             ButtonResult.Enabled = true;
+
+            tmp.Dispose();
         }
 
         //действия при изменении размера окна или чувствительности

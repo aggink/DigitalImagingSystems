@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\QuickSelect.cs" />
     <Compile Include="Binarization\BradleyRota.cs" />
     <Compile Include="Binarization\ChristianWolfe.cs" />
     <Compile Include="Binarization\Gavrilov.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Interpolation\QuadSpline.cs" />
     <Compile Include="Interpolation\СubicSpline.cs" />
     <Compile Include="Manager\FormManager\ManagerBackgroundWork.cs" />
+    <Compile Include="Manager\FormManager\ManagerSpatialFilter.cs" />
     <Compile Include="Manager\WorkManager\BarGraph.cs" />
     <Compile Include="Manager\FormManager\ManagerBinarization.cs" />
     <Compile Include="Manager\WorkManager\ManagerError.cs" />
@@ -80,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolveSystemEquations\GaussianElimination.cs" />
     <Compile Include="SolveSystemEquations\SweepMethod.cs" />
+    <Compile Include="SpatialFiltering\GaussianFilter.cs" />
+    <Compile Include="SpatialFiltering\LinearFiltering.cs" />
+    <Compile Include="SpatialFiltering\MedianFiltering.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

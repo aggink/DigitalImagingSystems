@@ -1,4 +1,5 @@
 ﻿using DIS.Manager;
+using DIS.Manager.FormManager;
 using DIS.Model;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace DIS
         {
             InitializeComponent();
 
+            //убираем выдимость с надписей о времени обработки и о размерах изображения
+            L_SizeImage.Visible = false;
+            L_Time.Visible = false;
+
             //таблица с картинками
             tableLayoutPanel1.RowStyles.Clear();
             tableLayoutPanel1.RowCount = 0;
@@ -29,15 +34,15 @@ namespace DIS
             ManagerLayer.layers = this.layers;
             ManagerLayer.pictureBox = this.pictureBox1;
             ManagerLayer.canvas = this.canvas;
-            ManagerLayer.ButtonUpdateImg = this.button5;
+            ManagerLayer.ButtonUpdateImg = this.B_ApplyImage;
 
             //настройка объекта для выполнения операции в отдельном потоке
             ManagerBackgroundWork.MainImage = pictureBox1;
             ManagerBackgroundWork.chart = chart1;
             ManagerBackgroundWork.backgroundWork = backgroundWorker1;
-            ManagerBackgroundWork.Button_AddChanges = button5;
-            ManagerBackgroundWork.Button_Save = button1;
-            ManagerBackgroundWork.Button_Unite = button3;
+            ManagerBackgroundWork.Button_AddChanges = B_ApplyImage;
+            ManagerBackgroundWork.Button_Save = B_Save;
+            ManagerBackgroundWork.Button_Unite = B_CollectImages;
             ManagerBackgroundWork.progressBar = progressBar1;
             ManagerBackgroundWork.panel = panel1;
             ManagerBackgroundWork.layers = layers;
@@ -51,11 +56,11 @@ namespace DIS
             chart1.Series[0].XValueMember = BarGraph.col1;
             chart1.Series[0].YValueMembers = BarGraph.col2;
 
-            button2.Enabled = true;
-            button3.Enabled = true;
+            B_AddImage.Enabled = true;
+            B_CollectImages.Enabled = true;
 
             //настройка comboBox с функциями
-            comboBox1.Items.AddRange(new string[]
+            CB_GradTranInterpolation.Items.AddRange(new string[]
             {
                 "Линейная зависимость",
                 "Квадратичный сплайн",
@@ -64,13 +69,13 @@ namespace DIS
                 "Полином Ньютона",
                 "Кривая Безье"
             });
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.SelectedIndex = 0;
+            CB_GradTranInterpolation.DropDownStyle = ComboBoxStyle.DropDownList;
+            CB_GradTranInterpolation.SelectedIndex = 0;
 
             //настройка рисования (поистроения графика по точкам)
             canvas.Name = "canvas1";
             canvas.pictureBox = this.pictureBox1;
-            canvas.comboBox = this.comboBox1;
+            canvas.comboBox = this.CB_GradTranInterpolation;
             canvas.chart = this.chart1;
             canvas.panel = this.panel1;
             this.panel1.Controls.Add(canvas);
@@ -78,18 +83,18 @@ namespace DIS
 
             //настройка бинаризации
             ManagerBinarization.ProgressBar = progressBar1;
-            ManagerBinarization.ButtonBinar = button7;
-            ManagerBinarization.ButtonResult = button8;
+            ManagerBinarization.ButtonBinar = B_StartBinarization;
+            ManagerBinarization.ButtonResult = B_Binarization;
             ManagerBinarization.MainImage = pictureBox1;
-            ManagerBinarization.ImageBinar = pictureBox2;
+            ManagerBinarization.ImageBinar = PB_OrigImageBinar;
             ManagerBinarization.CB_Gavrilov = CB_Gavrilov;
             ManagerBinarization.CB_Otsu = CB_Otsu;
             ManagerBinarization.CB_BradleyRota = CB_BradleyRota;
             ManagerBinarization.CB_ChristianWolfe = CB_ChristianWolfe;
             ManagerBinarization.CB_Sauwolas = CB_Sauwolas;
             ManagerBinarization.CB_Nibleck = CB_Nibleck;
-            ManagerBinarization.NUD_Size = numericUpDown1;
-            ManagerBinarization.NUD_KorA = numericUpDown2;
+            ManagerBinarization.NUD_Size = NUD_SizeWindow;
+            ManagerBinarization.NUD_KorA = NUD_Koef;
             ManagerBinarization.Canvas = canvas;
 
             CB_BradleyRota.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
@@ -98,8 +103,42 @@ namespace DIS
             CB_Nibleck.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
             CB_Otsu.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
             CB_Sauwolas.CheckedChanged += new EventHandler(ManagerBinarization.CB_Checked);
-            numericUpDown1.ValueChanged += new EventHandler(ManagerBinarization.NUD_ValueChanged);
-            numericUpDown2.ValueChanged += new EventHandler(ManagerBinarization.NUD_ValueChanged);
+            NUD_SizeWindow.ValueChanged += new EventHandler(ManagerBinarization.NUD_ValueChanged);
+            NUD_Koef.ValueChanged += new EventHandler(ManagerBinarization.NUD_ValueChanged);
+
+            //настройка пространственной фильтрации
+            //общие
+            ManagerSpatialFilter.PB_MainImage = pictureBox1;
+            ManagerSpatialFilter.PB_OriginImage = PB_OrigImageSpatial;
+            ManagerSpatialFilter.PrB_ProgressBar = progressBar1;
+            ManagerSpatialFilter.Canvas = canvas;
+            ManagerSpatialFilter.L_Time = L_Time;
+            ManagerSpatialFilter.L_SizeImage = L_SizeImage;
+            ManagerSpatialFilter.B_StartChange = B_StartSpatialF;
+            //для линейной фильтрации
+            ManagerSpatialFilter.TB_Matrix = TB_SpatialMatrix;
+            ManagerSpatialFilter.CB_CheckGauss = CB_GaussFilter;
+            ManagerSpatialFilter.NUD_Change_Sigma = NUD_SpatialGausSigma;
+            ManagerSpatialFilter.NUD_Сhange_R = NUD_SpatialGausR;
+            ManagerSpatialFilter.B_LinearFilter = B_LinearFiltering;
+            ManagerSpatialFilter.L_TextSigma = L_Spatial_GausSigma;
+            ManagerSpatialFilter.L_TextR = L_Spatial_GausR;
+            ManagerSpatialFilter.L_TextMatrix = L_Spatial_Matrix;
+            ManagerSpatialFilter.L_TextSumMatrix = L_Spatial_MatrixSum;
+            //для медианной фильтрации
+            ManagerSpatialFilter.NUD_Change_Height = NUD_Spartial_Height;
+            ManagerSpatialFilter.NUD_Change_Width = NUD_Spartial_Width;
+            ManagerSpatialFilter.B_MedianFilter = B_MedianFiltering;
+            ManagerSpatialFilter.L_TextMatrixSize = L_Spartial_SizeMatrix;
+            ManagerSpatialFilter.L_TextWidth = L_Spartial_Width;
+            ManagerSpatialFilter.L_TextHeight = L_Spartial_Height;
+
+            CB_GaussFilter.CheckedChanged += new EventHandler(ManagerSpatialFilter.CheckBox_ChacngeActive);
+            NUD_SpatialGausR.ValueChanged += new EventHandler(ManagerSpatialFilter.NUD_ValueChanged);
+            NUD_SpatialGausSigma.ValueChanged += new EventHandler(ManagerSpatialFilter.NUD_ValueChanged);
+            B_StartSpatialF.Click += new EventHandler(ManagerSpatialFilter.Button_Start);
+            B_LinearFiltering.Click += new EventHandler(ManagerSpatialFilter.Button_ExecuteLinearFilter);
+            B_MedianFiltering.Click += new EventHandler(ManagerSpatialFilter.Button_ExecuteMedianFilter);
         }
 
         //сохранить
@@ -161,8 +200,8 @@ namespace DIS
                 return;
             }
             //закрываем доступ к кнопка
-            button3.Enabled = false;
-            button5.Enabled = false;
+            B_CollectImages.Enabled = false;
+            B_ApplyImage.Enabled = false;
 
             List<LayerValue> items = new List<LayerValue>();
             foreach(var item in layers)
@@ -171,7 +210,7 @@ namespace DIS
                 item.Work = false;
                 item.B_showImage.BackColor = Color.LightGreen;
             }
-            button5.BackColor = Color.LightGreen;
+            B_ApplyImage.BackColor = Color.LightGreen;
 
             //запускаем операцию в другом потоке
             backgroundWorker1.RunWorkerAsync(items);
@@ -205,7 +244,7 @@ namespace DIS
                     Worklayer.pictureBox.Image = (Image)pictureBox1.Image.Clone();
                     Worklayer.Work = false;
                     Worklayer.B_showImage.BackColor = Color.LightGreen;
-                    button5.BackColor = Color.LightGreen;
+                    B_ApplyImage.BackColor = Color.LightGreen;
                 }
                 else
                 {
