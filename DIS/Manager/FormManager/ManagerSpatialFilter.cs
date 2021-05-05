@@ -304,6 +304,8 @@ namespace DIS.Manager.FormManager
             try
             {
                 string text = TB_Matrix.Text;
+                //меняем все точки на запятые
+                text = text.Replace(".", ",");
                 //удаляет повторяющиеся пробельные символы
                 text = Regex.Replace(text, @" +", " ");
                 //удаляет символы вначале и в конце строки
