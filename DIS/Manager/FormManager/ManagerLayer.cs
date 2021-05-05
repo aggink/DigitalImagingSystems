@@ -21,6 +21,12 @@ namespace DIS.Manager
         public static PictureBox pictureBox;
         public static MyCanvas canvas;
         public static Button ButtonUpdateImg;
+        public static Label L_SizeImage = null;
+        public static Label L_Time = null;
+
+        private const string textTime = "Время обработки изображения: ";
+        private const string textSizeImage = "Размер изображения: ";
+
         //перерисовать таблицу с контейнерами (изображениями)
         public static void UpdateTableLayoutPanel()
         {
@@ -186,6 +192,11 @@ namespace DIS.Manager
                 LayerValue layerValue = new LayerValue(container);
                 pictureBox.Image = WorkImage.SetImgChannelValue(layerValue.image, layerValue.Transparency, layerValue.R, layerValue.G, layerValue.B);
                 canvas.Image = (Image)pictureBox.Image.Clone();
+
+                L_Time.Text = textTime;
+                L_Time.Visible = false;
+                L_SizeImage.Text = textSizeImage + pictureBox.Image.Width.ToString() + " x " + pictureBox.Image.Height.ToString();
+                L_SizeImage.Visible = true;
             }
             else
             {

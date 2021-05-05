@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,12 @@ namespace DIS.Manager
         public static PictureBox MainImage = null;
         public static BackgroundWorker backgroundWork = null;
         public static Panel panel = null;
+        public static Label L_SizeImage = null;
+        public static Label L_Time = null;
+
+        public static double time = 0;
+        private const string textTime = "Время обработки изображения: ";
+        private const string textSizeImage = "Размер изображения: ";
 
         //обработка при завершении операции, ее остановке или ошибки
         public static void CompletedProcess(object sender, RunWorkerCompletedEventArgs e)
@@ -54,6 +61,12 @@ namespace DIS.Manager
             Button_Save.Enabled = true;
             Button_Unite.Enabled = true;
             Button_AddChanges.Enabled = true;
+
+            //выводим время обработки и инфу о размере картинки
+            L_SizeImage.Text = textSizeImage + MainImage.Image.Width.ToString() + " x " + MainImage.Height.ToString();
+            L_Time.Text = textTime + time + " мс.";
+            L_Time.Visible = true;
+            L_SizeImage.Visible = true;
         }
         //настройка прогресс-бара
         public static void ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -64,6 +77,10 @@ namespace DIS.Manager
         //обработка запроса в другом потоке
         public static void Work(object sender, DoWorkEventArgs e)
         {
+            //запуск таймера
+            Stopwatch sWatch = new Stopwatch();
+            sWatch.Start();
+
             List<LayerValue> layerValues = (List<LayerValue>)e.Argument;
             //выполняем слияние картинок
             if (layerValues.Any())
@@ -92,6 +109,10 @@ namespace DIS.Manager
                 (panel.Controls[0] as MyCanvas).Image = (Image)result.image.Clone();
 
                 result.image.Dispose();
+
+                //останавливаем таймер и получаем время
+                sWatch.Stop();
+                time = sWatch.ElapsedMilliseconds;
             }
         }
     }

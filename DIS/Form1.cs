@@ -17,6 +17,10 @@ namespace DIS
     {
         private List<Layer> layers = new List<Layer>();
         MyCanvas canvas = new MyCanvas();
+
+        private const string textTime = "Время обработки изображения: ";
+        private const string textSizeImage = "Размер изображения: ";
+
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +39,8 @@ namespace DIS
             ManagerLayer.pictureBox = this.pictureBox1;
             ManagerLayer.canvas = this.canvas;
             ManagerLayer.ButtonUpdateImg = this.B_ApplyImage;
+            ManagerLayer.L_SizeImage = L_SizeImage;
+            ManagerLayer.L_Time = L_Time;
 
             //настройка объекта для выполнения операции в отдельном потоке
             ManagerBackgroundWork.MainImage = pictureBox1;
@@ -46,6 +52,8 @@ namespace DIS
             ManagerBackgroundWork.progressBar = progressBar1;
             ManagerBackgroundWork.panel = panel1;
             ManagerBackgroundWork.layers = layers;
+            ManagerBackgroundWork.L_SizeImage = L_SizeImage;
+            ManagerBackgroundWork.L_Time = L_Time;
 
             backgroundWorker1.WorkerReportsProgress = true;
             backgroundWorker1.DoWork += new DoWorkEventHandler(ManagerBackgroundWork.Work);
@@ -294,20 +302,40 @@ namespace DIS
             if (canvas.Image == null) return;
             canvas.Image.Dispose();
             canvas.Image = (Image)pictureBox1.Image.Clone();
-
             canvas.Clear();
+
+            WriteSizeAndTime();
         }
 
         //включить или выключить бинаризацию
         private void button7_Click(object sender, EventArgs e)
         {
             ManagerBinarization.StartOrStopBinar();
+            WriteSizeAndTime();
         }
 
         //выполнить бинаризацию (заменить главную картинку)
         private void button8_Click_1(object sender, EventArgs e)
         {
             ManagerBinarization.PerformBinar();
+            WriteSizeAndTime();
+        }
+
+        //подписи к главному изображению
+        private void WriteSizeAndTime()
+        {
+            L_Time.Text = textTime;
+            L_Time.Visible = false;
+            if (pictureBox1.Image != null)
+            {
+                L_SizeImage.Text = textSizeImage + pictureBox1.Image.Width.ToString() + " x " + pictureBox1.Image.Height.ToString();
+                L_SizeImage.Visible = true;
+            }
+            else
+            {
+                L_SizeImage.Text = textSizeImage;
+                L_SizeImage.Visible = false;
+            }
         }
     }
 }
