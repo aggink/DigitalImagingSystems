@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\CooleyTukeyAlgorithm.cs" />
     <Compile Include="Algorithm\QuickSelect.cs" />
     <Compile Include="Binarization\BradleyRota.cs" />
     <Compile Include="Binarization\ChristianWolfe.cs" />
@@ -54,6 +56,13 @@
     <Compile Include="Binarization\Nibleck.cs" />
     <Compile Include="Binarization\Otsu.cs" />
     <Compile Include="Binarization\Sauwolas.cs" />
+    <Compile Include="Filtration\BMP.cs" />
+    <Compile Include="Filtration\Frequency\Filter.cs" />
+    <Compile Include="Filtration\Frequency\FourierImage.cs" />
+    <Compile Include="Filtration\Frequency\FrequencyFilters.cs" />
+    <Compile Include="Manager\WorkManager\GeneralOperation.cs" />
+    <Compile Include="Filtration\Frequency\OneFourierTransform.cs" />
+    <Compile Include="Filtration\Frequency\TwoFourierTransform.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +76,7 @@
     <Compile Include="Interpolation\QuadSpline.cs" />
     <Compile Include="Interpolation\СubicSpline.cs" />
     <Compile Include="Manager\FormManager\ManagerBackgroundWork.cs" />
+    <Compile Include="Manager\FormManager\ManagerFrequencyFilter.cs" />
     <Compile Include="Manager\FormManager\ManagerSpatialFilter.cs" />
     <Compile Include="Manager\WorkManager\BarGraph.cs" />
     <Compile Include="Manager\FormManager\ManagerBinarization.cs" />
@@ -82,9 +92,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolveSystemEquations\GaussianElimination.cs" />
     <Compile Include="SolveSystemEquations\SweepMethod.cs" />
-    <Compile Include="SpatialFiltering\GaussianFilter.cs" />
-    <Compile Include="SpatialFiltering\LinearFiltering.cs" />
-    <Compile Include="SpatialFiltering\MedianFiltering.cs" />
+    <Compile Include="Filtration\Spatial\GaussianFilter.cs" />
+    <Compile Include="Filtration\Spatial\LinearFiltering.cs" />
+    <Compile Include="Filtration\Spatial\MedianFiltering.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

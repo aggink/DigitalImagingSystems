@@ -29,8 +29,8 @@ namespace DIS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.L_Time = new System.Windows.Forms.Label();
             this.L_SizeImage = new System.Windows.Forms.Label();
@@ -83,15 +83,36 @@ namespace DIS
             this.L_Spatial_GausR = new System.Windows.Forms.Label();
             this.L_Spatial_GausSigma = new System.Windows.Forms.Label();
             this.MedianFilter = new System.Windows.Forms.TabPage();
+            this.B_MedianFiltering = new System.Windows.Forms.Button();
+            this.NUD_Spartial_Height = new System.Windows.Forms.NumericUpDown();
+            this.NUD_Spartial_Width = new System.Windows.Forms.NumericUpDown();
+            this.L_Spartial_Height = new System.Windows.Forms.Label();
+            this.L_Spartial_Width = new System.Windows.Forms.Label();
+            this.L_Spartial_SizeMatrix = new System.Windows.Forms.Label();
             this.B_StartSpatialF = new System.Windows.Forms.Button();
             this.PB_OrigImageSpatial = new System.Windows.Forms.PictureBox();
+            this.FrequencyFiltering = new System.Windows.Forms.TabPage();
+            this.L_Freq_NewSize = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.L_Freq_Size = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.B_FreqToMain = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.L_FreqY = new System.Windows.Forms.Label();
+            this.L_FreqX = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.CB_FreqFalse = new System.Windows.Forms.CheckBox();
+            this.CB_FreqTrue = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.TB__Frequency_TextParam = new System.Windows.Forms.TextBox();
+            this.L_Frequency_Fourier = new System.Windows.Forms.Label();
+            this.B_FrequencyFilter = new System.Windows.Forms.Button();
+            this.PB_FourierImage = new System.Windows.Forms.PictureBox();
+            this.L_Frequency_Factor = new System.Windows.Forms.Label();
+            this.L_Frequency_FilterArea = new System.Windows.Forms.Label();
+            this.PB_OrigImageFrequency = new System.Windows.Forms.PictureBox();
+            this.B_StartFrequencyF = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.L_Spartial_SizeMatrix = new System.Windows.Forms.Label();
-            this.L_Spartial_Width = new System.Windows.Forms.Label();
-            this.L_Spartial_Height = new System.Windows.Forms.Label();
-            this.NUD_Spartial_Width = new System.Windows.Forms.NumericUpDown();
-            this.NUD_Spartial_Height = new System.Windows.Forms.NumericUpDown();
-            this.B_MedianFiltering = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -115,9 +136,12 @@ namespace DIS
             ((System.ComponentModel.ISupportInitialize)(this.NUD_SpatialGausSigma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_SpatialGausR)).BeginInit();
             this.MedianFilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageSpatial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Height)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageSpatial)).BeginInit();
+            this.FrequencyFiltering.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_FourierImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageFrequency)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -227,6 +251,7 @@ namespace DIS
             this.TabControl1.Controls.Add(this.GradationTran);
             this.TabControl1.Controls.Add(this.Binarization);
             this.TabControl1.Controls.Add(this.SpatialFiltering);
+            this.TabControl1.Controls.Add(this.FrequencyFiltering);
             this.TabControl1.Location = new System.Drawing.Point(13, 12);
             this.TabControl1.Multiline = true;
             this.TabControl1.Name = "TabControl1";
@@ -341,29 +366,29 @@ namespace DIS
             // 
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chart1.BackColor = System.Drawing.Color.LightGray;
-            chartArea4.AxisX.LabelStyle.Enabled = false;
-            chartArea4.AxisX.MajorGrid.Enabled = false;
-            chartArea4.AxisY.LabelStyle.Enabled = false;
-            chartArea4.AxisY.MajorGrid.Enabled = false;
-            chartArea4.BackColor = System.Drawing.Color.White;
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
+            chartArea2.AxisX.LabelStyle.Enabled = false;
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisY.LabelStyle.Enabled = false;
+            chartArea2.AxisY.MajorGrid.Enabled = false;
+            chartArea2.BackColor = System.Drawing.Color.White;
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Location = new System.Drawing.Point(5, 412);
             this.chart1.Margin = new System.Windows.Forms.Padding(1);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series4.BorderColor = System.Drawing.Color.Black;
-            series4.BorderWidth = 0;
-            series4.ChartArea = "ChartArea1";
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series4.CustomProperties = "PointWidth=1";
-            series4.LabelBackColor = System.Drawing.Color.White;
-            series4.LabelBorderColor = System.Drawing.Color.White;
-            series4.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
-            series4.LabelBorderWidth = 0;
-            series4.Name = "Series1";
-            series4.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.chart1.Series.Add(series4);
+            series2.BorderColor = System.Drawing.Color.Black;
+            series2.BorderWidth = 0;
+            series2.ChartArea = "ChartArea1";
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series2.CustomProperties = "PointWidth=1";
+            series2.LabelBackColor = System.Drawing.Color.White;
+            series2.LabelBorderColor = System.Drawing.Color.White;
+            series2.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            series2.LabelBorderWidth = 0;
+            series2.Name = "Series1";
+            series2.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(342, 188);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "Гистограмма";
@@ -668,6 +693,7 @@ namespace DIS
             // 
             this.PB_OrigImageBinar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.PB_OrigImageBinar.BackColor = System.Drawing.Color.LightGray;
             this.PB_OrigImageBinar.Enabled = false;
             this.PB_OrigImageBinar.Location = new System.Drawing.Point(6, 63);
             this.PB_OrigImageBinar.Name = "PB_OrigImageBinar";
@@ -877,6 +903,80 @@ namespace DIS
             this.MedianFilter.Text = "Медианная";
             this.MedianFilter.UseVisualStyleBackColor = true;
             // 
+            // B_MedianFiltering
+            // 
+            this.B_MedianFiltering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_MedianFiltering.BackColor = System.Drawing.Color.LightGreen;
+            this.B_MedianFiltering.Enabled = false;
+            this.B_MedianFiltering.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_MedianFiltering.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_MedianFiltering.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_MedianFiltering.Location = new System.Drawing.Point(7, 109);
+            this.B_MedianFiltering.Name = "B_MedianFiltering";
+            this.B_MedianFiltering.Size = new System.Drawing.Size(312, 38);
+            this.B_MedianFiltering.TabIndex = 30;
+            this.B_MedianFiltering.Text = "Выполнить";
+            this.B_MedianFiltering.UseVisualStyleBackColor = false;
+            this.B_MedianFiltering.Click += new System.EventHandler(this.B_MedianFiltering_Click);
+            // 
+            // NUD_Spartial_Height
+            // 
+            this.NUD_Spartial_Height.Enabled = false;
+            this.NUD_Spartial_Height.Location = new System.Drawing.Point(212, 73);
+            this.NUD_Spartial_Height.Maximum = new decimal(new int[] {
+            1001,
+            0,
+            0,
+            0});
+            this.NUD_Spartial_Height.Name = "NUD_Spartial_Height";
+            this.NUD_Spartial_Height.Size = new System.Drawing.Size(70, 20);
+            this.NUD_Spartial_Height.TabIndex = 28;
+            this.NUD_Spartial_Height.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // NUD_Spartial_Width
+            // 
+            this.NUD_Spartial_Width.Enabled = false;
+            this.NUD_Spartial_Width.Location = new System.Drawing.Point(48, 73);
+            this.NUD_Spartial_Width.Maximum = new decimal(new int[] {
+            1001,
+            0,
+            0,
+            0});
+            this.NUD_Spartial_Width.Name = "NUD_Spartial_Width";
+            this.NUD_Spartial_Width.Size = new System.Drawing.Size(70, 20);
+            this.NUD_Spartial_Width.TabIndex = 27;
+            this.NUD_Spartial_Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // L_Spartial_Height
+            // 
+            this.L_Spartial_Height.AutoSize = true;
+            this.L_Spartial_Height.Location = new System.Drawing.Point(203, 57);
+            this.L_Spartial_Height.Name = "L_Spartial_Height";
+            this.L_Spartial_Height.Size = new System.Drawing.Size(88, 13);
+            this.L_Spartial_Height.TabIndex = 14;
+            this.L_Spartial_Height.Text = "Шаг вверх/вниз";
+            // 
+            // L_Spartial_Width
+            // 
+            this.L_Spartial_Width.AutoSize = true;
+            this.L_Spartial_Width.Location = new System.Drawing.Point(33, 57);
+            this.L_Spartial_Width.Name = "L_Spartial_Width";
+            this.L_Spartial_Width.Size = new System.Drawing.Size(101, 13);
+            this.L_Spartial_Width.TabIndex = 13;
+            this.L_Spartial_Width.Text = "Шаг влево/вправо";
+            // 
+            // L_Spartial_SizeMatrix
+            // 
+            this.L_Spartial_SizeMatrix.AutoSize = true;
+            this.L_Spartial_SizeMatrix.Enabled = false;
+            this.L_Spartial_SizeMatrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.L_Spartial_SizeMatrix.Location = new System.Drawing.Point(63, 16);
+            this.L_Spartial_SizeMatrix.Name = "L_Spartial_SizeMatrix";
+            this.L_Spartial_SizeMatrix.Size = new System.Drawing.Size(206, 20);
+            this.L_Spartial_SizeMatrix.TabIndex = 12;
+            this.L_Spartial_SizeMatrix.Text = "Задайте размер матрицы";
+            // 
             // B_StartSpatialF
             // 
             this.B_StartSpatialF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -896,6 +996,7 @@ namespace DIS
             // 
             this.PB_OrigImageSpatial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.PB_OrigImageSpatial.BackColor = System.Drawing.Color.LightGray;
             this.PB_OrigImageSpatial.Enabled = false;
             this.PB_OrigImageSpatial.Location = new System.Drawing.Point(6, 56);
             this.PB_OrigImageSpatial.Name = "PB_OrigImageSpatial";
@@ -904,78 +1005,250 @@ namespace DIS
             this.PB_OrigImageSpatial.TabIndex = 7;
             this.PB_OrigImageSpatial.TabStop = false;
             // 
-            // L_Spartial_SizeMatrix
+            // FrequencyFiltering
             // 
-            this.L_Spartial_SizeMatrix.AutoSize = true;
-            this.L_Spartial_SizeMatrix.Enabled = false;
-            this.L_Spartial_SizeMatrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.L_Spartial_SizeMatrix.Location = new System.Drawing.Point(63, 16);
-            this.L_Spartial_SizeMatrix.Name = "L_Spartial_SizeMatrix";
-            this.L_Spartial_SizeMatrix.Size = new System.Drawing.Size(206, 20);
-            this.L_Spartial_SizeMatrix.TabIndex = 12;
-            this.L_Spartial_SizeMatrix.Text = "Задайте размер матрицы";
+            this.FrequencyFiltering.Controls.Add(this.L_Freq_NewSize);
+            this.FrequencyFiltering.Controls.Add(this.label13);
+            this.FrequencyFiltering.Controls.Add(this.L_Freq_Size);
+            this.FrequencyFiltering.Controls.Add(this.label9);
+            this.FrequencyFiltering.Controls.Add(this.B_FreqToMain);
+            this.FrequencyFiltering.Controls.Add(this.label14);
+            this.FrequencyFiltering.Controls.Add(this.L_FreqY);
+            this.FrequencyFiltering.Controls.Add(this.L_FreqX);
+            this.FrequencyFiltering.Controls.Add(this.label11);
+            this.FrequencyFiltering.Controls.Add(this.CB_FreqFalse);
+            this.FrequencyFiltering.Controls.Add(this.CB_FreqTrue);
+            this.FrequencyFiltering.Controls.Add(this.label10);
+            this.FrequencyFiltering.Controls.Add(this.TB__Frequency_TextParam);
+            this.FrequencyFiltering.Controls.Add(this.L_Frequency_Fourier);
+            this.FrequencyFiltering.Controls.Add(this.B_FrequencyFilter);
+            this.FrequencyFiltering.Controls.Add(this.PB_FourierImage);
+            this.FrequencyFiltering.Controls.Add(this.L_Frequency_Factor);
+            this.FrequencyFiltering.Controls.Add(this.L_Frequency_FilterArea);
+            this.FrequencyFiltering.Controls.Add(this.PB_OrigImageFrequency);
+            this.FrequencyFiltering.Controls.Add(this.B_StartFrequencyF);
+            this.FrequencyFiltering.Location = new System.Drawing.Point(4, 40);
+            this.FrequencyFiltering.Name = "FrequencyFiltering";
+            this.FrequencyFiltering.Padding = new System.Windows.Forms.Padding(3);
+            this.FrequencyFiltering.Size = new System.Drawing.Size(347, 760);
+            this.FrequencyFiltering.TabIndex = 6;
+            this.FrequencyFiltering.Text = "Частотная фильтрация";
+            this.FrequencyFiltering.UseVisualStyleBackColor = true;
             // 
-            // L_Spartial_Width
+            // L_Freq_NewSize
             // 
-            this.L_Spartial_Width.AutoSize = true;
-            this.L_Spartial_Width.Location = new System.Drawing.Point(33, 57);
-            this.L_Spartial_Width.Name = "L_Spartial_Width";
-            this.L_Spartial_Width.Size = new System.Drawing.Size(101, 13);
-            this.L_Spartial_Width.TabIndex = 13;
-            this.L_Spartial_Width.Text = "Шаг влево/вправо";
+            this.L_Freq_NewSize.AutoSize = true;
+            this.L_Freq_NewSize.Location = new System.Drawing.Point(15, 312);
+            this.L_Freq_NewSize.Name = "L_Freq_NewSize";
+            this.L_Freq_NewSize.Size = new System.Drawing.Size(77, 13);
+            this.L_Freq_NewSize.TabIndex = 48;
+            this.L_Freq_NewSize.Text = "Width x Height";
             // 
-            // L_Spartial_Height
+            // label13
             // 
-            this.L_Spartial_Height.AutoSize = true;
-            this.L_Spartial_Height.Location = new System.Drawing.Point(203, 57);
-            this.L_Spartial_Height.Name = "L_Spartial_Height";
-            this.L_Spartial_Height.Size = new System.Drawing.Size(88, 13);
-            this.L_Spartial_Height.TabIndex = 14;
-            this.L_Spartial_Height.Text = "Шаг вверх/вниз";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 299);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(131, 13);
+            this.label13.TabIndex = 47;
+            this.label13.Text = "Размер для фильтрации";
             // 
-            // NUD_Spartial_Width
+            // L_Freq_Size
             // 
-            this.NUD_Spartial_Width.Enabled = false;
-            this.NUD_Spartial_Width.Location = new System.Drawing.Point(48, 73);
-            this.NUD_Spartial_Width.Maximum = new decimal(new int[] {
-            1001,
-            0,
-            0,
-            0});
-            this.NUD_Spartial_Width.Name = "NUD_Spartial_Width";
-            this.NUD_Spartial_Width.Size = new System.Drawing.Size(70, 20);
-            this.NUD_Spartial_Width.TabIndex = 27;
-            this.NUD_Spartial_Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.L_Freq_Size.AutoSize = true;
+            this.L_Freq_Size.Location = new System.Drawing.Point(15, 284);
+            this.L_Freq_Size.Name = "L_Freq_Size";
+            this.L_Freq_Size.Size = new System.Drawing.Size(77, 13);
+            this.L_Freq_Size.TabIndex = 46;
+            this.L_Freq_Size.Text = "Width x Height";
             // 
-            // NUD_Spartial_Height
+            // label9
             // 
-            this.NUD_Spartial_Height.Enabled = false;
-            this.NUD_Spartial_Height.Location = new System.Drawing.Point(212, 73);
-            this.NUD_Spartial_Height.Maximum = new decimal(new int[] {
-            1001,
-            0,
-            0,
-            0});
-            this.NUD_Spartial_Height.Name = "NUD_Spartial_Height";
-            this.NUD_Spartial_Height.Size = new System.Drawing.Size(70, 20);
-            this.NUD_Spartial_Height.TabIndex = 28;
-            this.NUD_Spartial_Height.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 271);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(99, 13);
+            this.label9.TabIndex = 45;
+            this.label9.Text = "Исходный размер";
             // 
-            // B_MedianFiltering
+            // B_FreqToMain
             // 
-            this.B_MedianFiltering.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.B_FreqToMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.B_MedianFiltering.BackColor = System.Drawing.Color.LightGreen;
-            this.B_MedianFiltering.Enabled = false;
-            this.B_MedianFiltering.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.B_MedianFiltering.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.B_MedianFiltering.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.B_MedianFiltering.Location = new System.Drawing.Point(7, 109);
-            this.B_MedianFiltering.Name = "B_MedianFiltering";
-            this.B_MedianFiltering.Size = new System.Drawing.Size(312, 38);
-            this.B_MedianFiltering.TabIndex = 30;
-            this.B_MedianFiltering.Text = "Выполнить";
-            this.B_MedianFiltering.UseVisualStyleBackColor = false;
+            this.B_FreqToMain.BackColor = System.Drawing.Color.LightGreen;
+            this.B_FreqToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_FreqToMain.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_FreqToMain.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_FreqToMain.Location = new System.Drawing.Point(287, 707);
+            this.B_FreqToMain.Name = "B_FreqToMain";
+            this.B_FreqToMain.Padding = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this.B_FreqToMain.Size = new System.Drawing.Size(43, 38);
+            this.B_FreqToMain.TabIndex = 44;
+            this.B_FreqToMain.Text = "←";
+            this.B_FreqToMain.UseVisualStyleBackColor = false;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 329);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(88, 13);
+            this.label14.TabIndex = 43;
+            this.label14.Text = "Центр картинки";
+            // 
+            // L_FreqY
+            // 
+            this.L_FreqY.AutoSize = true;
+            this.L_FreqY.Location = new System.Drawing.Point(15, 357);
+            this.L_FreqY.Name = "L_FreqY";
+            this.L_FreqY.Size = new System.Drawing.Size(15, 13);
+            this.L_FreqY.TabIndex = 42;
+            this.L_FreqY.Text = "y:";
+            // 
+            // L_FreqX
+            // 
+            this.L_FreqX.AutoSize = true;
+            this.L_FreqX.Location = new System.Drawing.Point(15, 342);
+            this.L_FreqX.Name = "L_FreqX";
+            this.L_FreqX.Size = new System.Drawing.Size(18, 13);
+            this.L_FreqX.TabIndex = 41;
+            this.L_FreqX.Text = "x: ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(126, 439);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(89, 13);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "true = 1, false = 0";
+            // 
+            // CB_FreqFalse
+            // 
+            this.CB_FreqFalse.AutoSize = true;
+            this.CB_FreqFalse.Enabled = false;
+            this.CB_FreqFalse.Location = new System.Drawing.Point(15, 419);
+            this.CB_FreqFalse.Name = "CB_FreqFalse";
+            this.CB_FreqFalse.Size = new System.Drawing.Size(210, 17);
+            this.CB_FreqFalse.TabIndex = 39;
+            this.CB_FreqFalse.Text = "Не удовлетворяет условию фильтра";
+            this.CB_FreqFalse.UseVisualStyleBackColor = true;
+            // 
+            // CB_FreqTrue
+            // 
+            this.CB_FreqTrue.AutoSize = true;
+            this.CB_FreqTrue.Enabled = false;
+            this.CB_FreqTrue.Location = new System.Drawing.Point(15, 396);
+            this.CB_FreqTrue.Name = "CB_FreqTrue";
+            this.CB_FreqTrue.Size = new System.Drawing.Size(272, 17);
+            this.CB_FreqTrue.TabIndex = 38;
+            this.CB_FreqTrue.Text = "Удовлетворяет условию фильтра (r1 >= pix >= r2)";
+            this.CB_FreqTrue.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(180, 357);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(129, 13);
+            this.label10.TabIndex = 35;
+            this.label10.Text = "Пример записи: x y r1 r2";
+            // 
+            // TB__Frequency_TextParam
+            // 
+            this.TB__Frequency_TextParam.AcceptsTab = true;
+            this.TB__Frequency_TextParam.Enabled = false;
+            this.TB__Frequency_TextParam.Location = new System.Drawing.Point(153, 268);
+            this.TB__Frequency_TextParam.Multiline = true;
+            this.TB__Frequency_TextParam.Name = "TB__Frequency_TextParam";
+            this.TB__Frequency_TextParam.Size = new System.Drawing.Size(188, 86);
+            this.TB__Frequency_TextParam.TabIndex = 33;
+            // 
+            // L_Frequency_Fourier
+            // 
+            this.L_Frequency_Fourier.AutoSize = true;
+            this.L_Frequency_Fourier.Location = new System.Drawing.Point(128, 470);
+            this.L_Frequency_Fourier.Name = "L_Frequency_Fourier";
+            this.L_Frequency_Fourier.Size = new System.Drawing.Size(80, 13);
+            this.L_Frequency_Fourier.TabIndex = 31;
+            this.L_Frequency_Fourier.Text = "Фурье - образ";
+            // 
+            // B_FrequencyFilter
+            // 
+            this.B_FrequencyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_FrequencyFilter.BackColor = System.Drawing.Color.LightGreen;
+            this.B_FrequencyFilter.Enabled = false;
+            this.B_FrequencyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_FrequencyFilter.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_FrequencyFilter.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_FrequencyFilter.Location = new System.Drawing.Point(18, 707);
+            this.B_FrequencyFilter.Name = "B_FrequencyFilter";
+            this.B_FrequencyFilter.Size = new System.Drawing.Size(263, 38);
+            this.B_FrequencyFilter.TabIndex = 30;
+            this.B_FrequencyFilter.Text = "Выполнить";
+            this.B_FrequencyFilter.UseVisualStyleBackColor = false;
+            // 
+            // PB_FourierImage
+            // 
+            this.PB_FourierImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PB_FourierImage.BackColor = System.Drawing.Color.LightGray;
+            this.PB_FourierImage.Enabled = false;
+            this.PB_FourierImage.Location = new System.Drawing.Point(15, 490);
+            this.PB_FourierImage.Name = "PB_FourierImage";
+            this.PB_FourierImage.Size = new System.Drawing.Size(315, 211);
+            this.PB_FourierImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_FourierImage.TabIndex = 17;
+            this.PB_FourierImage.TabStop = false;
+            // 
+            // L_Frequency_Factor
+            // 
+            this.L_Frequency_Factor.AutoSize = true;
+            this.L_Frequency_Factor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.L_Frequency_Factor.Location = new System.Drawing.Point(121, 373);
+            this.L_Frequency_Factor.Name = "L_Frequency_Factor";
+            this.L_Frequency_Factor.Size = new System.Drawing.Size(97, 20);
+            this.L_Frequency_Factor.TabIndex = 16;
+            this.L_Frequency_Factor.Text = "Множители";
+            // 
+            // L_Frequency_FilterArea
+            // 
+            this.L_Frequency_FilterArea.AutoSize = true;
+            this.L_Frequency_FilterArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.L_Frequency_FilterArea.Location = new System.Drawing.Point(97, 245);
+            this.L_Frequency_FilterArea.Name = "L_Frequency_FilterArea";
+            this.L_Frequency_FilterArea.Size = new System.Drawing.Size(149, 20);
+            this.L_Frequency_FilterArea.TabIndex = 15;
+            this.L_Frequency_FilterArea.Text = "Области фильтра";
+            // 
+            // PB_OrigImageFrequency
+            // 
+            this.PB_OrigImageFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PB_OrigImageFrequency.BackColor = System.Drawing.Color.LightGray;
+            this.PB_OrigImageFrequency.Enabled = false;
+            this.PB_OrigImageFrequency.Location = new System.Drawing.Point(6, 58);
+            this.PB_OrigImageFrequency.Name = "PB_OrigImageFrequency";
+            this.PB_OrigImageFrequency.Size = new System.Drawing.Size(335, 184);
+            this.PB_OrigImageFrequency.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PB_OrigImageFrequency.TabIndex = 10;
+            this.PB_OrigImageFrequency.TabStop = false;
+            // 
+            // B_StartFrequencyF
+            // 
+            this.B_StartFrequencyF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_StartFrequencyF.BackColor = System.Drawing.Color.LightGreen;
+            this.B_StartFrequencyF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.B_StartFrequencyF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.B_StartFrequencyF.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.B_StartFrequencyF.Location = new System.Drawing.Point(57, 10);
+            this.B_StartFrequencyF.Name = "B_StartFrequencyF";
+            this.B_StartFrequencyF.Size = new System.Drawing.Size(229, 42);
+            this.B_StartFrequencyF.TabIndex = 9;
+            this.B_StartFrequencyF.Text = "Начать";
+            this.B_StartFrequencyF.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -1014,9 +1287,13 @@ namespace DIS
             ((System.ComponentModel.ISupportInitialize)(this.NUD_SpatialGausR)).EndInit();
             this.MedianFilter.ResumeLayout(false);
             this.MedianFilter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageSpatial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Width)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Height)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Spartial_Width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageSpatial)).EndInit();
+            this.FrequencyFiltering.ResumeLayout(false);
+            this.FrequencyFiltering.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_FourierImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_OrigImageFrequency)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1084,6 +1361,27 @@ namespace DIS
         internal System.Windows.Forms.Label L_Spartial_Height;
         internal System.Windows.Forms.Label L_Spartial_Width;
         internal System.Windows.Forms.Label L_Spartial_SizeMatrix;
+        private System.Windows.Forms.TabPage FrequencyFiltering;
+        internal System.Windows.Forms.PictureBox PB_OrigImageFrequency;
+        internal System.Windows.Forms.Button B_StartFrequencyF;
+        private System.Windows.Forms.Label L_Frequency_Fourier;
+        private System.Windows.Forms.Button B_FrequencyFilter;
+        internal System.Windows.Forms.PictureBox PB_FourierImage;
+        internal System.Windows.Forms.Label L_Frequency_Factor;
+        internal System.Windows.Forms.Label L_Frequency_FilterArea;
+        internal System.Windows.Forms.TextBox TB__Frequency_TextParam;
+        private System.Windows.Forms.Label label10;
+        internal System.Windows.Forms.CheckBox CB_FreqFalse;
+        internal System.Windows.Forms.CheckBox CB_FreqTrue;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label14;
+        internal System.Windows.Forms.Label L_FreqY;
+        internal System.Windows.Forms.Label L_FreqX;
+        internal System.Windows.Forms.Button B_FreqToMain;
+        internal System.Windows.Forms.Label L_Freq_NewSize;
+        private System.Windows.Forms.Label label13;
+        internal System.Windows.Forms.Label L_Freq_Size;
+        private System.Windows.Forms.Label label9;
     }
 }
 

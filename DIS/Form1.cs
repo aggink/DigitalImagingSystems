@@ -147,6 +147,27 @@ namespace DIS
             B_StartSpatialF.Click += new EventHandler(ManagerSpatialFilter.Button_Start);
             B_LinearFiltering.Click += new EventHandler(ManagerSpatialFilter.Button_ExecuteLinearFilter);
             B_MedianFiltering.Click += new EventHandler(ManagerSpatialFilter.Button_ExecuteMedianFilter);
+
+            //настройка частотной фильтрации
+            ManagerFrequencyFilter.PB_MainImage = pictureBox1;
+            ManagerFrequencyFilter.PB_FrequencyImage = PB_OrigImageFrequency;
+            ManagerFrequencyFilter.PB_FourierImage = PB_FourierImage;
+            ManagerFrequencyFilter.L_SizeImage = L_SizeImage;
+            ManagerFrequencyFilter.L_Time = L_Time;
+            ManagerFrequencyFilter.TB_TextParam = TB__Frequency_TextParam;
+            ManagerFrequencyFilter.CB_filterTrue = CB_FreqTrue;
+            ManagerFrequencyFilter.CB_filterFalse = CB_FreqFalse;
+            ManagerFrequencyFilter.B_Start = B_StartFrequencyF;
+            ManagerFrequencyFilter.B_Execute = B_FrequencyFilter;
+            ManagerFrequencyFilter.B_ToMainImage = B_FreqToMain;
+            ManagerFrequencyFilter.L_X = L_FreqX;
+            ManagerFrequencyFilter.L_Y = L_FreqY;
+            ManagerFrequencyFilter.L_SizeImageFilter = L_Freq_Size;
+            ManagerFrequencyFilter.L_NewSizeImageFilter = L_Freq_NewSize;
+
+            B_StartFrequencyF.Click += new EventHandler(ManagerFrequencyFilter.Button_Start);
+            B_FrequencyFilter.Click += new EventHandler(ManagerFrequencyFilter.Button_Execute);
+            B_FreqToMain.Click += new EventHandler(ManagerFrequencyFilter.Button_ToMain);
         }
 
         //сохранить
@@ -281,7 +302,7 @@ namespace DIS
             //обработка изменения положения контейнера
             layer.B_up.Click += new EventHandler(ManagerLayer.Button_ContainerUp);
             layer.B_down.Click += new EventHandler(ManagerLayer.Button_ContainerDown);
-            //отправляем изображение на редактирование вне рамок rgb и сбора
+            //отправляем изображение на редактирование вне рамок argb и сбора
             layer.B_showImage.Click += new EventHandler(ManagerLayer.Button_ShowImage);
             //добавляем контейнер в список
             layers.Add(layer);
@@ -336,6 +357,11 @@ namespace DIS
                 L_SizeImage.Text = textSizeImage;
                 L_SizeImage.Visible = false;
             }
+        }
+
+        private void B_MedianFiltering_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

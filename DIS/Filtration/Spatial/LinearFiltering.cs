@@ -1,4 +1,4 @@
-﻿using DIS.Algorithm;
+﻿using DIS.Manager;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DIS.SpatialFiltering
 {
-    public static class MedianFiltering
+    public class LinearFiltering : GeneralOperation
     {
-        public static (Image bmp, double time) ApplyFilter(Image image, int row, int col)
+        public static (Image bmp, double time) ApplyFilter(Image image, double[,] matrix, int row, int col)
         {
             //запуск таймера
             Stopwatch sWatch = new Stopwatch();
@@ -41,13 +41,6 @@ namespace DIS.SpatialFiltering
             int limit_y = height - 1;
             int limit_x = width - 1;
 
-            //размер матрицы
-            int matrixLenght = row * col;
-            //позиция элемента по середине матрицы
-            int matrix_posk = matrixLenght / 2;
-            //позиция последнего элемента
-            int matrix_poslast = matrixLenght - 1;
-
             Parallel.For(0, rgb.Length / 3, index =>
             {
                 //координата пикселя
@@ -60,18 +53,14 @@ namespace DIS.SpatialFiltering
                 int stop_i1 = i + r_ver;
                 int stop_j1 = j + r_hor;
 
-                //создаем массивы для поиска медианы
-                int[] matrix_r = new int[matrixLenght];
-                int[] matrix_g = new int[matrixLenght];
-                int[] matrix_b = new int[matrixLenght];
-                int x = 0;
-
-                //проверка на крайниые пиксели
+                double sum_r = 0, sum_g = 0, sum_b = 0;
+                //проверка на крайние пиксели
                 if (start_i1 < 0 || start_j1 < 0 || stop_i1 >= height || stop_j1 >= width)
                 {
-                    for (int i1 = start_i1; i1 <= stop_i1; ++i1)
+                    //B(x, y) = Sum(F(i, j)*f(x + i, y + j))
+                    for (int i1 = start_i1, y = 0; i1 <= stop_i1; ++i1, ++y)
                     {
-                        for (int j1 = start_j1; j1 <= stop_j1; ++j1)
+                        for (int j1 = start_j1, x = 0; j1 <= stop_j1; ++j1, ++x)
                         {
                             //если выходит за края, то зеркалим пиксели
                             int pix_i = i1;
@@ -83,33 +72,32 @@ namespace DIS.SpatialFiltering
                             if (j1 >= width) pix_j = limit_x - (j1 - limit_x);
 
                             int pos_pixR = (pix_i * width + pix_j) * 3;
-                            matrix_r[x] = rgb[pos_pixR];
-                            matrix_g[x] = rgb[pos_pixR + 1];
-                            matrix_b[x] = rgb[pos_pixR + 2];
-                            ++x;
+                            sum_r += matrix[y, x] * rgb[pos_pixR + 2];
+                            sum_g += matrix[y, x] * rgb[pos_pixR + 1];
+                            sum_b += matrix[y, x] * rgb[pos_pixR];
                         }
                     }
                 }
                 else
                 {
-                    for (int i1 = start_i1; i1 <= stop_i1; ++i1)
+                    //B(x, y) = Sum(F(i, j)*f(x + i, y + j))
+                    for (int i1 = start_i1, y = 0; i1 <= stop_i1; ++i1, ++y)
                     {
-                        for (int j1 = start_j1; j1 <= stop_j1; ++j1)
-                        {
+                        for (int j1 = start_j1, x = 0; j1 <= stop_j1; ++j1, ++x)
+                        { 
                             int pos_pixR = (i1 * width + j1) * 3;
-                            matrix_r[x] = rgb[pos_pixR];
-                            matrix_g[x] = rgb[pos_pixR + 1];
-                            matrix_b[x] = rgb[pos_pixR + 2];
-                            ++x;
+                            sum_r += matrix[y, x] * rgb[pos_pixR + 2];
+                            sum_g += matrix[y, x] * rgb[pos_pixR + 1];
+                            sum_b += matrix[y, x] * rgb[pos_pixR];
                         }
                     }
                 }
 
                 //сохраняем изменения
                 int pos_r = index * 3;
-                New_rgb[pos_r] = (byte)QuickSelect.kthSmallest(matrix_r, 0, matrix_poslast, matrix_posk);
-                New_rgb[pos_r + 1] = (byte)QuickSelect.kthSmallest(matrix_g, 0, matrix_poslast, matrix_posk);
-                New_rgb[pos_r + 2] = (byte)QuickSelect.kthSmallest(matrix_b, 0, matrix_poslast, matrix_posk);
+                New_rgb[pos_r + 2] = (byte)Clamp(sum_r, 0, 255);
+                New_rgb[pos_r + 1] = (byte)Clamp(sum_g, 0, 255);
+                New_rgb[pos_r] = (byte)Clamp(sum_b, 0, 255);
             });
 
             System.Runtime.InteropServices.Marshal.Copy(New_rgb, 0, intPtr, bytes);

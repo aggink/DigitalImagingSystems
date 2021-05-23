@@ -63,7 +63,7 @@ namespace DIS.Manager
             Button_AddChanges.Enabled = true;
 
             //выводим время обработки и инфу о размере картинки
-            L_SizeImage.Text = textSizeImage + MainImage.Image.Width.ToString() + " x " + MainImage.Height.ToString();
+            L_SizeImage.Text = textSizeImage + MainImage.Image.Width.ToString() + " x " + MainImage.Image.Height.ToString();
             L_Time.Text = textTime + time + " мс.";
             L_Time.Visible = true;
             L_SizeImage.Visible = true;

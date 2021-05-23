@@ -154,9 +154,11 @@ namespace DIS.Manager.FormManager
                 L_TextSumMatrix.Text = textSum + Math.Round(result.sum, GaussianFilter.RoundNumber).ToString();
                 //заполняем textBox с матрицей
                 WriteTextToMatrix(result.matrix, R * 2 + 1, R * 2 + 1);
+                TB_Matrix.Enabled = false;
                 return;
             }
 
+            TB_Matrix.Enabled = true;
             L_TextR.Enabled = false;
             L_TextSigma.Enabled = false;
             NUD_Сhange_R.Enabled = false;
@@ -314,7 +316,7 @@ namespace DIS.Manager.FormManager
                 //прокерка строки на содержание только определенных символов
                 if (!Regex.IsMatch(text, "^[-/.,\n\r 0-9]*$"))
                 {
-                    return new ResultReadMatrix("В матрице содержаться запрещенные символы!\n Доступны только символы: ' ', ',', '.', '/', '0-9'");
+                    return new ResultReadMatrix("В матрице содержатся запрещенные символы!\n Доступны только символы: ' ', ',', '.', '/', '0-9'");
                 }
 
                 //делим строку на подстроки

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace DIS.Manager
 {
     //класс для обработки изображений
-    public class WorkImage
+    public class WorkImage : GeneralOperation
     {
         //результат обработки изображений
         public Bitmap image { get; private set; } = null;
@@ -80,8 +80,8 @@ namespace DIS.Manager
         //операция над байтами
         private void ChangeBytes(byte[] argbValues, byte[] WorkArgb, int count, int action)
         {
-            double nW = 0, nR = 0;
-            for (int i = 0; i < count; i = i + 4)
+            double nW, nR;
+            for (int i = 0; i < count; i += 4)
             {
                 switch (action)
                 {
@@ -143,12 +143,6 @@ namespace DIS.Manager
                         break;
                 }
             }
-        }
-        public static T Clamp<T>(T val, T min, T max) where T : IComparable<T>
-        {
-            if (val.CompareTo(min) < 0) return min;
-            else if (val.CompareTo(max) > 0) return max;
-            else return val;
         }
         //изменение изображения опираясь на цветовые каналы rgba
         public static Image SetImgChannelValue(Image img, float tran, int R = 1, int G = 1, int B = 1)

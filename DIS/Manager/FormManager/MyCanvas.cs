@@ -197,7 +197,9 @@ namespace DIS.Manager
             }
             
             if(transform_сompleted)
-            { 
+            {
+                if (Image == null) return;
+
                 UpdateImgAndBarGraph(factorValues, Image.Width, Image.Height);
                 transform_сompleted = false;
             }
