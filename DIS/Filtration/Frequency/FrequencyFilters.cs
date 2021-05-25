@@ -50,11 +50,12 @@ namespace DIS.Filtration.Frequency
                         
                         if(value >= part.r1 * part.r1 && value <= part.r2 * part.r2)
                         {
-                            fourier[index] = fourier[index] * checkTrue;
+                            fourier[index] = FurImg[color][index] * checkTrue;
+                            break;
                         }
                         else
                         {
-                            fourier[index] = fourier[index] * checkFalse;
+                            fourier[index] = FurImg[color][index] * checkFalse;
                         }
                     }
                 });

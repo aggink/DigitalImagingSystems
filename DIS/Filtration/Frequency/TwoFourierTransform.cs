@@ -85,6 +85,7 @@ namespace DIS.Filtration.Frequency
                 for(int y = 0; y < height; ++y)
                 {
                     fourierIn[y * width + x] = tmp[y];
+                    fourierIn[y * width + x] = fourierIn[y * width + x].Real * Math.Pow(-1, x + y);
                 }
             });
             
