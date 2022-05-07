@@ -1,4 +1,4 @@
-# Оконное приложение "Работа с изображениями"
+# Лабораторные работы по дисциплине "Системы цифровой обработки изображений"
 ## Лаба 1. Возможности:
 * Можно открывать любое число изображений.
 * Для каждого изображения можно выбрать метод наложения, прозрачность, а также цветовые каналы, с которыми программа будет работать.
@@ -32,3 +32,40 @@
 * Перед применением фильтр визуализирован на окне (ч/б каринка,
 показывающая, какая окрестность или окрестности частотной области подлежат фильтрации).
 * Реализован алгоритм Кули-Тьюки для быстрого преобразования Фурье (БПФ, FFT).
+
+### Интерфейс программы
+* Редактор   
+
+<p align="center">
+  <img alt="Редактор" src="https://github.com/aggink/DigitalImagingSystems/blob/main/Images/Editor.jpg">
+</p>
+
+---
+* Градационные преобразования
+
+<p align="center">
+  <img alt="Градационные преобразования" src="https://github.com/aggink/DigitalImagingSystems/blob/main/Images/GradationTransformations.jpg">
+</p>
+
+---
+* Бинамиризация изображений
+
+<p align="center">
+  <img alt="Бинамиризация изображений" src="https://github.com/aggink/DigitalImagingSystems/blob/main/Images/Binarization.jpg">
+</p>
+
+---
+* Пространственная фильтрация
+
+<p align="center">
+  <img alt="Пространственная фильтрация" src="https://github.com/aggink/DigitalImagingSystems/blob/main/Images/SpatialFiltering.jpg">
+</p>
+
+---
+* Частотная фильтрация
+
+<p align="center">
+  <img alt="Частотная фильтрация" src="https://github.com/aggink/DigitalImagingSystems/blob/main/Images/FrequencyFiltering.jpg">
+</p>
+
+---
